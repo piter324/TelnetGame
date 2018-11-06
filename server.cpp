@@ -1,6 +1,8 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/signal.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include <string.h>
@@ -11,7 +13,14 @@
 #define QUEUE_SIZE 16
 #define BUFFER_SIZE 256
 
+void interrupt_handler(int socketFd){
+    printf("Server is closing...\n");
+    close(socketFd);
+    exit(0);
+}
+
 int main(int argc, char* argv[]){
+    signal(SIGINT, &interrupt_handler);
     printf("\n\n\n\n\nSecrets of Elka\n--------------------\n");
 
     // Create file for socket
