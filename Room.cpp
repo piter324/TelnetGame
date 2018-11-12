@@ -6,7 +6,7 @@
 
 void Room::writeRoomDescription() {
 
-    std::cout<<this->getRoomHeader()<<".\n"<<this->getRoomDescription()<<".\n";
+    std::cout<<this->getRoomHeader()<<".\n"<<this->getRoomDescription()<<"\n";
     this->writeResponses();
     std::cout<<"\r\n";
 }

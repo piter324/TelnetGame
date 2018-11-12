@@ -36,7 +36,7 @@ private:
 
 
 public:
-    Response(char responseId, std::string responseText, std::string responseNextAction){
+    Response(std::string responseId, std::string responseText, std::string responseNextAction){
         this->responseId            = std::move(responseId);
         this->responseText          = std::move(responseText);
         this->responseNextAction    = std::move(responseNextAction);

@@ -7,7 +7,7 @@
 
 void Response::writeResponse() {
 
-        std::cout<<"["<<this->getResponseId()<<"]. "<<this->getResponseText()<<"\n";
+        std::cout<<"["<<this->getResponseId()<<"]. "<<this->getResponseText()<<".\n";
 }
 
 

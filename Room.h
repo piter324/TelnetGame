@@ -7,6 +7,9 @@
 
 
 #include <string>
+#include <fstream>
+#include <utility>
+
 #include "Response.h"
 
 class Room {
@@ -38,16 +41,25 @@ private:
         return responseList[responseNumber];
     }
 
+
 public:
-    Room(){
-        //Todo konstruktor, pobieranie z pliku
+    Room(std::string roomId, std::string roomHeader, std::string roomDescription){
+        this->roomId            = std::move(roomId);
+        this->roomHeader        = std::move(roomHeader);
+        this->roomDescription   = std::move(roomDescription);
+        this->responseListSize  = 0;
+    }
+
+    void addResponse(Response* response){
+        responseList.push_back(response);
+        responseListSize++;
     }
 
     void writeRoomDescription();
 
     void writeResponses();
 
-    void goToNextRoom(std::string);
+    void goToNextRoom(std::string);//todo chodzenie po pokojach
 
 };
 

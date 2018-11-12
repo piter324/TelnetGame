@@ -5,7 +5,7 @@
 #ifndef TELNETGAME_FILEHANDLER_H
 #define TELNETGAME_FILEHANDLER_H
 
-#include <stdio.h>  /* defines FILENAME_MAX */
+#include <cstdio>  /* defines FILENAME_MAX */
 #ifdef WINDOWS
 #include <direct.h>
     #define GetCurrentDir _getcwd
@@ -19,7 +19,8 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <sstream>
+
+//FileHandler - klasa realizowana jako singleton. Wywoływana na początku uruchomienia programu czyta pliki i tworzy instancje klas pokoj oraz odpowiedz, jednocześnie tablice wskaznikow na obiekty Pokoj
 
 class FileHandler {
 
@@ -28,50 +29,40 @@ private:
     const std::string locationsFileName = "locations.list";
     const std::string locationLocationsFolder = "../locations/";
     std::vector<Room*> roomList;
-    std::ifstream locationsFile;
+    int roomListSize;
+
+    FileHandler() {
+        this->roomListSize = 0;
+        constructRoomList();
+    }
+    FileHandler(const FileHandler &);
+    FileHandler& operator=(const FileHandler&);
+    ~FileHandler() = default;
+
+    int constructRoomList() ;
 
 public:
-    FileHandler(){
+    static FileHandler& getInstance(){
+        // Inicjalizacja statycznego obiektu.
+        // Obiekt zostanie utworzony przy pierwszym wywołaniu tej metody
+        // i tylko wtedy nastąpi inicjalizacja przy pomocy konstruktora. //Każde następne wywołanie jedynie zwróci referencję tego obiektu.
+        // wywolanie FileHandler::getInstance().method();
+
+        static FileHandler instance;
+        return instance;
     }
 
-    void readFromFile(){
-        // czytanie z pliku
-        locationsFile.open(locationLocationsFolder+locationsFileName);
+    void readFromFile();
 
-        std::cout<<locationLocationsFolder+locationsFileName<<"\n";
+    void currentPath();
 
-        if(!locationsFile.is_open()) {
-            std::cout<<"Plik nie jest otwarty.\n";
-            return;
-        }
-
-        std::string line;
-        while( std::getline(locationsFile, line) ){
-
-            std::cout<<line<<"\n";
-        }
-
-
-        locationsFile.close();
+    void writeRoom(int i){
+        roomList[i]->writeRoomDescription();
     }
 
-    void currentPath(){
-        char cCurrentPath[FILENAME_MAX];
-
-        if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath)))
-        {
-            //return errno;
-            return;
-        }
-
-        cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
-
-        printf ("The current working directory is %s", cCurrentPath);
-        //return cCurrentPath;
-    }
+    int getRoomListSize(){ return this->roomListSize ;}
 
 };
 
-//todo do as singleton
 
 #endif //TELNETGAME_FILEHANDLER_H
