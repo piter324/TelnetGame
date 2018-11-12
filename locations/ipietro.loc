@@ -1,0 +1,15 @@
+ipietro.loc
+I pietro
+Na pierwszym pietrze sytuacja wyglada podobnie. Poza biegajacymi studentami, spora grupka czeka pod sala 133, a inna spora grupka pod dziekanatem. Jak zwykle kolejki!
+A
+Podejdz do Sali 133
+sala133.loc
+B
+Skorzystaj z lazienki 
+ipietro_b.loc
+C
+Podejdz do dziekanatu 
+dziekanat.loc
+D
+Skorzystaj ze schodow 
+szatnia.loc
