@@ -14,8 +14,8 @@ void Room::writeRoomDescription() {
 void Room::writeResponses() {
 
     for(int i = 0; i < this->getResponseListSize(); i++){
-        Response tmp = this->getResponse(i);
-        tmp.writeResponse();
+        Response* tmp = this->getResponse(i);
+        tmp->writeResponse();
     }
 
 }

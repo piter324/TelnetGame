@@ -15,7 +15,7 @@ private:
     std::string roomId;
     std::string roomHeader;
     std::string roomDescription;
-    std::vector<Response> responseList;
+    std::vector<Response*> responseList;
     int responseListSize;
 
     std::string getRoomId(){
@@ -34,8 +34,8 @@ private:
         return responseListSize;
     }
 
-    Response getResponse(int responseNumber){
-        responseList[responseNumber];
+    Response* getResponse(int responseNumber){
+        return responseList[responseNumber];
     }
 
 public:

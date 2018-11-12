@@ -6,6 +6,7 @@
 #define TELNETGAME_RESPONSE_H
 
 #include <iostream>
+#include <utility>
 #include <vector>
 #include <string>
 
@@ -36,9 +37,9 @@ private:
 
 public:
     Response(char responseId, std::string responseText, std::string responseNextAction){
-        this->responseId            = responseId;
-        this->responseText          = responseText;
-        this->responseNextAction    = responseNextAction;
+        this->responseId            = std::move(responseId);
+        this->responseText          = std::move(responseText);
+        this->responseNextAction    = std::move(responseNextAction);
     };
 
 
