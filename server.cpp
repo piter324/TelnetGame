@@ -99,7 +99,7 @@ int main(int argc, char* argv[]){
                     strcpy(buffer, "What color is the mailbox inside?\r\n– Infrared.\r\n");
                     send(clientSocketFd, buffer, BUFFER_SIZE, 0);
                 }
-               
+
                 if(strcmp(message, "exit\r\n") == 0) {
                     printf("Connection from %s is on port %d closing\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
                     close(0);
