@@ -68,11 +68,11 @@ int main(int argc, char* argv[]){
             close(socketFd); // Close not connected parent socket
             printf("Connection from %s on port %d is open\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
             char buffer[BUFFER_SIZE]; // buffer for incoming messages
-            
+
 
             while(1) {
                 bzero(buffer, BUFFER_SIZE); // zero buffer out
-                strcpy(buffer,"> "); // 
+                strcpy(buffer,"> "); //
                 send(clientSocketFd, buffer, BUFFER_SIZE, 0);
 
                 while(1){
@@ -96,12 +96,12 @@ int main(int argc, char* argv[]){
                 message_index = 0;
 
                 if(strcmp(message, "joke\r\n") == 0){
-                    strcpy(buffer, "What color is the mailbox inside?\r\n– Infrared.\r\n");
+                    strcpy(buffer, "\aWhat color is the mailbox inside?\r\n– Infrared.\r\n");
                     send(clientSocketFd, buffer, BUFFER_SIZE, 0);
                 }
 
                 if(strcmp(message, "exit\r\n") == 0) {
-                    printf("Connection from %s is on port %d closing\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
+                    printf("\aConnection from %s is on port %d closing\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
                     close(0);
                     return 0;
                 }
@@ -111,5 +111,5 @@ int main(int argc, char* argv[]){
         close(clientSocketFd); // Close child socket - served by forked process
     }
 
-    
+
 }
