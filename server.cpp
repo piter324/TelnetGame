@@ -13,18 +13,27 @@
 #define QUEUE_SIZE 16
 #define BUFFER_SIZE 256
 
-void interrupt_handler(int socketFd){
-    printf("Server is closing...\n");
+int socketFd;
+
+void interrupt_handler(int signalNum){
+    printf("SIGNAL: %d, Server on desc: %d is closing...\n", signalNum, socketFd);
     close(socketFd);
     exit(0);
 }
 
+void close_parent_swap_for_child(int clientSocketFd){
+    printf("Closing: %d - client: %d\n", socketFd, clientSocketFd);
+    close(socketFd);
+    socketFd = clientSocketFd;
+    printf("%d - %d\n", socketFd, clientSocketFd);
+}
+
 int main(int argc, char* argv[]){
     signal(SIGINT, &interrupt_handler);
-    printf("\n\n\n\n\nSecrets of Elka\n--------------------\n");
+    printf("\n\n\nSecrets of Elka\n--------------------\n");
 
     // Create file for socket
-    int socketFd = socket(AF_INET, SOCK_STREAM, 0);
+    socketFd = socket(AF_INET, SOCK_STREAM, 0);
     if(socketFd < 0){
         printf("Socket call error\n");
         return 1;
@@ -65,27 +74,33 @@ int main(int argc, char* argv[]){
         }
         // Create new process just for this client
         if(fork() == 0){
-            close(socketFd); // Close not connected parent socket
+            close_parent_swap_for_child(clientSocketFd); // Close not fully associated parent socket
             printf("Connection from %s on port %d is open\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
             char buffer[BUFFER_SIZE]; // buffer for incoming messages
             
 
             while(1) {
                 bzero(buffer, BUFFER_SIZE); // zero buffer out
+                // strcpy(buffer,"\e[2J >"); // 
                 strcpy(buffer,"> "); // 
                 send(clientSocketFd, buffer, BUFFER_SIZE, 0);
 
                 while(1){
                     int bytesRead = read(clientSocketFd, buffer, BUFFER_SIZE);
-                    if(bytesRead < 0){
-                        printf("Client disconnected\n");
-                        close(0);
+                    if(bytesRead < 1){ //cliens has lost connection
+                        printf("Client %s disconnected\n", inet_ntoa(clientAddress.sin_addr));
+                        close(clientSocketFd);
                         return 0;
                     }
                     for(int i = 0; i<bytesRead; i++){
-                        message[message_index++] = buffer[i];
-                        printf("%d\n", (int)buffer[i]);
-                        if(buffer[i] == '\n') break;
+                        if((int)buffer[i] == 8) { //backspace pressed
+                            if(message_index>0) message_index--;
+                        }
+                        else {
+                            message[message_index++] = buffer[i];
+                            printf("%d\n", (int)buffer[i]);
+                            if(buffer[i] == '\n') break;
+                        }
                     }
                     if(message[message_index-1] == '\n') {
                         printf("Message: %s\n", message);
@@ -102,7 +117,7 @@ int main(int argc, char* argv[]){
                
                 if(strcmp(message, "exit\r\n") == 0) {
                     printf("Connection from %s is on port %d closing\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
-                    close(0);
+                    close(clientSocketFd);
                     return 0;
                 }
                 bzero(message, BUFFER_SIZE);
