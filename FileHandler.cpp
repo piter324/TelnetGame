@@ -2,8 +2,6 @@
 // Created by Bartosz Cybulski on 12/11/2018.
 //
 
-#define SUCCESS 0
-#define FAIL (-1)
 
 #include "FileHandler.h"
 
@@ -68,6 +66,7 @@ int FileHandler::constructRoomList() {
         std::ifstream tmpFile;
         tmpFile.open(locationLocationsFolder + fileId);
         if(!tmpFile.is_open()){
+            std::cout<<"blad!! "<<fileId;
             return FAIL;
         }
 
@@ -95,7 +94,7 @@ int FileHandler::constructRoomList() {
                     third_line = line;
                     if(i == 2){
                         tmpRoom = new Room(first_line, second_line, third_line);
-                        roomList.push_back(tmpRoom);
+                        roomVector.push_back(tmpRoom);
                         roomListSize++;
                     }
                     else{
@@ -114,4 +113,20 @@ int FileHandler::constructRoomList() {
     locationsFile.close();
 
     return SUCCESS;
+}
+
+Room *FileHandler::getNextRoom(std::string roomID) {
+
+    for(int i = 0 ; i < this->getRoomListSize(); i++){
+
+        if(roomVector[i]->getRoomId() == roomID){
+            return roomVector[i];
+        }
+    }
+
+    return nullptr;
+}
+
+Room *FileHandler::getFirstRoom() {
+    return getNextRoom(STARTING_POINT);
 }

@@ -14,6 +14,10 @@
 #define GetCurrentDir getcwd
 #endif
 
+#define SUCCESS 0
+#define FAIL (-1)
+#define STARTING_POINT "poczatek.loc"
+
 #include "Room.h"
 
 #include <fstream>
@@ -28,12 +32,13 @@ private:
 
     const std::string locationsFileName = "locations.list";
     const std::string locationLocationsFolder = "../locations/";
-    std::vector<Room*> roomList;
+    std::vector<Room*> roomVector;
     int roomListSize;
 
     FileHandler() {
         this->roomListSize = 0;
         constructRoomList();
+        // TODO co jezeli nie uda sie odczytac plikow
     }
     FileHandler(const FileHandler &);
     FileHandler& operator=(const FileHandler&);
@@ -57,11 +62,16 @@ public:
     void currentPath();
 
     void writeRoom(int i){
-        roomList[i]->writeRoomDescription();
+        roomVector[i]->writeRoomDescription();
     }
 
     int getRoomListSize(){ return this->roomListSize ;}
 
+    //zawsze zaczynamy gre od pliku poczatek.loc
+    Room* getFirstRoom();
+
+    //znając ID pokoju ( nazwe pliku ) wybieramy kolejny pokoj
+    Room* getNextRoom (std::string roomID);
 };
 
 

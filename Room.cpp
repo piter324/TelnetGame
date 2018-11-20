@@ -20,6 +20,19 @@ void Room::writeResponses() {
 
 }
 
-void Room::goToNextRoom(std::string) {
-    //todo przejscie do nastepnej lokacji
+std::string Room::getNextRoomId(std::string answerLine) {
+
+    char answerId = answerLine[0];
+    answerId = (char) toupper(answerId);
+
+    int answerIdNumber = (int) answerId - 64;
+
+    if(answerIdNumber <= getResponseListSize()){
+        return responseList[answerIdNumber - 1]->getResponseNextAction();
+    }
+    else
+        return "Nieprawidlowa odpowiedz. Podaj odpowiedz jeszcze raz";
+
+
 }
+

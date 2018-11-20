@@ -30,10 +30,6 @@ private:
         return responseText;
     }
 
-    std::string getResponseNextAction(){
-        return responseNextAction;
-    }
-
 
 public:
     Response(std::string responseId, std::string responseText, std::string responseNextAction){
@@ -42,7 +38,9 @@ public:
         this->responseNextAction    = std::move(responseNextAction);
     };
 
-
+    std::string getResponseNextAction(){
+        return responseNextAction;
+    }
 
     void writeResponse();
 

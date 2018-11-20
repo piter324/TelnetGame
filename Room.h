@@ -21,9 +21,6 @@ private:
     std::vector<Response*> responseList;
     int responseListSize;
 
-    std::string getRoomId(){
-        return roomId;
-    }
 
     std::string getRoomHeader(){
         return roomHeader;
@@ -50,6 +47,10 @@ public:
         this->responseListSize  = 0;
     }
 
+    std::string getRoomId(){
+        return roomId;
+    }
+
     void addResponse(Response* response){
         responseList.push_back(response);
         responseListSize++;
@@ -59,7 +60,10 @@ public:
 
     void writeResponses();
 
-    void goToNextRoom(std::string);//todo chodzenie po pokojach
+    //funkcja ktora przyjmuje jako parametr ID odpowiedzi ( A/B/C ) i podaje nazwe kolejnego pliku
+    //poniewaz telnet przesyla cale linijki przyjmujemy od uzytkownika String i ucinamy do pierwszej litery
+
+    std::string getNextRoomId(std::string);//todo chodzenie po pokojach
 
 };
 
