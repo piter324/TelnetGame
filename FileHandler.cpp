@@ -58,15 +58,19 @@ int FileHandler::constructRoomList() {
         return FAIL;
     }
 
-    std::string fileId;
+    std::string fileId, tmpFileDir;
+    std::ifstream tmpFile;
+
     while ( std::getline(locationsFile, fileId) ){
         //usuniecie koncowki .loc
         //line = line.substr(0, line.size()-4);
 
-        std::ifstream tmpFile;
-        tmpFile.open(locationLocationsFolder + fileId);
-        if(!tmpFile.is_open()){
-            std::cout<<"blad!! "<<fileId;
+        tmpFileDir = locationLocationsFolder + fileId;
+        tmpFileDir = removeSpaces(tmpFileDir);
+        tmpFile.open(tmpFileDir,  std::fstream::in );
+
+        while(!tmpFile.is_open()){
+            std::cout<<"blad!! "<<tmpFileDir<<"|||"<<std::endl;
             return FAIL;
         }
 
@@ -112,7 +116,12 @@ int FileHandler::constructRoomList() {
     }
     locationsFile.close();
 
-    return SUCCESS;
+    if (roomListSize == 34){
+        std::cout<<"ALL FILES ARE ADDED.\nTHE GAME BEGINS.\n\n";
+        return SUCCESS;
+    }
+    else{ return FAIL; }
+
 }
 
 Room *FileHandler::getNextRoom(std::string roomID) {

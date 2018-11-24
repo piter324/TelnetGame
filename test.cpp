@@ -10,7 +10,6 @@ int main(int argc, char* argv[]){
 //        FileHandler::getInstance().writeRoom(i);
 //    }
 
-    std::cout<<FileHandler::getInstance().getRoomListSize()<<std::endl;
 
     Room* currentRoom = FileHandler::getInstance().getFirstRoom();
     currentRoom->writeRoomDescription();
@@ -20,6 +19,8 @@ int main(int argc, char* argv[]){
     while(true){
         std::cout<< "Co wybierasz ?"<<std::endl;
         std::cin>>response;
+
+        std::system(CLEAR);
 
         roomId = currentRoom->getNextRoomId(response);
 

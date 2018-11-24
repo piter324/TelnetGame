@@ -9,9 +9,11 @@
 #ifdef WINDOWS
 #include <direct.h>
     #define GetCurrentDir _getcwd
+#define CLEAR "cls"
 #else
 #include <unistd.h>
 #define GetCurrentDir getcwd
+#define CLEAR "clear"
 #endif
 
 #define SUCCESS 0
@@ -45,6 +47,12 @@ private:
     ~FileHandler() = default;
 
     int constructRoomList() ;
+
+    std::string removeSpaces(std::string str)
+    {
+        str.erase(remove(str.begin(), str.end(), ' '), str.end());
+        return str;
+    }
 
 public:
     static FileHandler& getInstance(){
