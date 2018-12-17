@@ -19,24 +19,26 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
     std::size_t posSep = username.find(":");
     if (posSep != std::string::npos)
         return false; //innapropriate username
+    std::cout << "user ok\n"; 
     posSep = passw.find(":");
         if (posSep != std::string::npos)
         return false; //innapropriate password
-    std::ifstream dbFile;
-    dbFile.open(pathToUserDatabase_);
+    std::cout << "passw ok \n";
+    std::ifstream dbFile(pathToUserDatabase_);
     bool userFound = false;
     if (dbFile) {
+        std::cout<<"File open\n";
         std::string userInfo;
-        while (!userFound && getline (dbFile,userInfo) ) {
-           // std::cout << "szukamy... " << userInfo.length() <<" " << username.length() << " " << passw.length() << std::endl;
-            if(userInfo.length() == username.length() + passw.length() + 1) {
-                std::cout << "kandydat... " << std::endl;
-                std::size_t posUsername = userInfo.find(username);
-                std::size_t posPasswd = userInfo.find(passw);
-                if(posUsername != std::string::npos && posPasswd != std::string::npos) {
-                    if(posUsername == 0 && posPasswd == username.length() + 1)
-                        userFound = true;
-                }
+        while (!userFound && getline(dbFile,userInfo) ) {
+            // std::cout << "szukamy... " << userInfo.length() <<" " << username.length() << " " << passw.length() << std::endl;
+            std::cout << "kandydat... " << userInfo << std::endl;
+            std::size_t posUsername = userInfo.find(username);
+            std::size_t posPasswd = userInfo.find(passw);
+            // std::cout << "szukamy2... " << posUsername <<" " << username.length() << " " << posPasswd << std::endl;
+            if(posUsername != std::string::npos && posPasswd != std::string::npos) {
+                // std::cout << "szukamy3... " << posUsername <<" " << username.length() << " " << posPasswd << std::endl;
+                if(posUsername == 0 && posPasswd == username.length() + 1)
+                    userFound = true;
             }
         }
         dbFile.close();
@@ -50,6 +52,8 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
         }
             
     }
+    dbFile.close();
+    std::cout << "blad w otwieraniu pliku" << std::endl;
     return false;
 }
 bool AutorizationController::logOut(std::string username) {
@@ -113,6 +117,8 @@ bool AutorizationController::registerUser(std::string username, std::string pass
     dbFile_app.open(pathToUserDatabase_, std::ios_base::app);
     if (dbFile_app) {
         dbFile_app << content;
+        dbFile_app.clear();
+        dbFile_app.seekp(0,  dbFile_app.beg);
         return true;
     }
     

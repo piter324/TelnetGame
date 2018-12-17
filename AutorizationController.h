@@ -12,6 +12,8 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
+#include <ios>
+
 
 class AutorizationController {
     public:
