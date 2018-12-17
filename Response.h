@@ -42,7 +42,7 @@ public:
         return responseNextAction;
     }
 
-    void writeResponse();
+    std::string writeResponse();
 
 
 };

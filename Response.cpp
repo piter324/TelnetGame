@@ -5,9 +5,11 @@
 #include "Response.h"
 
 
-void Response::writeResponse() {
+std::string Response::writeResponse() {
 
         std::cout<<"["<<this->getResponseId()<<"]. "<<this->getResponseText()<<".\n";
+        std::string returnString = "["+this->getResponseId() + "]. " + this->getResponseText() + ".\r\n";
+        return returnString;
 }
 
 
