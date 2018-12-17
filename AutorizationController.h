@@ -28,6 +28,7 @@ class AutorizationController {
     private:
         std::string pathToUserDatabase_;
         std::string pathToUserFolder_;
+
 };
 
 

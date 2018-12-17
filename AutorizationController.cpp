@@ -34,7 +34,9 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
             }
         }
         dbFile.close();
-        if(userFound) {
+        if(userFound) { // user found in db
+            if(isLoggedIn(username))
+                return false;
             std::cout << "tworzymy plik gracza" << std::endl;
             std::ofstream userFile(pathToUserFolder_ + username);
             userFile.close();
