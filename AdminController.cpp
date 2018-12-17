@@ -90,3 +90,54 @@ std::string AdminController::deleteUser(std::string user)
     else return("Cannot open file \"" + usersFile + "\".");
 
 }
+
+std::string AdminController::request(std::string command)
+{
+    std::string result;
+
+    std::stringstream stream(command);
+    std::vector<std::string> commandVector;
+
+    while(stream.good() ){
+        std::string tmp;
+        getline(stream, tmp, ' ');
+        commandVector.push_back(tmp);
+        }
+
+    if(commandVector.size() < 1)
+        result = "No command found. \r\n Possible commands:\r\n kick [username] \r\n delete [username] \r\n restart \r\n show all \r\n show active \r\n ";
+
+    if(commandVector[0]=="kick")
+    {
+        if(commandVector.size() < 2)
+            result = "No argument found. Command should have form: kick [username]";
+        else
+            result = kickUser(commandVector[1]);
+    }
+    else if(commandVector[0]=="delete")
+    {
+        if(commandVector.size() < 2)
+            result = "No argument found. Command should have form: delete [username]";
+        else
+            result = deleteUser(commandVector[1]);
+    }
+    else if(commandVector[0]=="restart")
+    {
+        result = serverReset();
+    }
+    else if(commandVector[0]=="show")
+    {
+        if(commandVector.size() < 2)
+            result = "No argument found. Command should have form: \"show all\" or \"show active\" ";
+        else if(commandVector[1]=="all")
+            result = showAllUsers();
+        else if(commandVector[1]=="active")
+            result = showActivePlayers();
+        else result = "Argument " + commandVector[1] + "is not valid.";
+    }
+    else if(commandVector[0]=="help")
+        result = "Commands:\r\n kick [username] \r\n delete [username] \r\n restart \r\n show all \r\n show active");
+    else (result = "Unknown command : " + command);
+
+    return result;
+}

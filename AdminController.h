@@ -8,18 +8,21 @@
 #include <string>
 #include <fstream>
 #include <dirent.h>
+#include <sstream>
+#include <vector>
 #include "AutorizationController.h"
 
 class AdminController
 {
     const std::string usersFile="../users.db";
     const std::string activeUsersPath="../loggedUsers/*";
-public:
     std::string serverReset();
     std::string showActivePlayers();
     std::string showAllUsers();
     std::string kickUser(std::string user);
     std::string deleteUser(std::string user);
+public:
+    std::string request(std::string command);
 };
 
 
