@@ -63,7 +63,7 @@ public:
     //funkcja ktora przyjmuje jako parametr ID odpowiedzi ( A/B/C ) i podaje nazwe kolejnego pliku
     //poniewaz telnet przesyla cale linijki przyjmujemy od uzytkownika String i ucinamy do pierwszej litery
 
-    std::string getNextRoomId(std::string);//todo chodzenie po pokojach
+    std::string getNextRoomId(std::string);
 
 };
 
