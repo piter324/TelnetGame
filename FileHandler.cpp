@@ -66,7 +66,7 @@ int FileHandler::constructRoomList() {
         //line = line.substr(0, line.size()-4);
 
         tmpFileDir = locationLocationsFolder + fileId;
-        tmpFileDir = removeSpaces(tmpFileDir);
+        //tmpFileDir = removeSpaces(tmpFileDir);
         tmpFile.open(tmpFileDir,  std::fstream::in );
 
         while(!tmpFile.is_open()){

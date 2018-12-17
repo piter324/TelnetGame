@@ -48,11 +48,11 @@ private:
 
     int constructRoomList() ;
 
-    std::string removeSpaces(std::string str)
-    {
-        str.erase(remove(str.begin(), str.end(), ' '), str.end());
-        return str;
-    }
+    // std::string removeSpaces(std::string str)
+    // {
+    //     str.erase(remove(str.begin(), str.end(), isspace), str.end());
+    //     return str;
+    // }
 
 public:
     static FileHandler& getInstance(){
