@@ -4,20 +4,25 @@
 
 #include "Room.h"
 
-void Room::writeRoomDescription() {
+std::string Room::writeRoomDescription() {
 
     std::cout<<this->getRoomHeader()<<".\n"<<this->getRoomDescription()<<"\n";
     this->writeResponses();
     std::cout<<"\r\n";
+    std::string returnString = this->getRoomHeader() + ".\r\n" + this->getRoomDescription() + "\r\n" + this->writeResponses();
+    return returnString;
 }
 
-void Room::writeResponses() {
+std::string Room::writeResponses() {
+
+    std::string returnString;
 
     for(int i = 0; i < this->getResponseListSize(); i++){
         Response* tmp = this->getResponse(i);
-        tmp->writeResponse();
+        returnString += tmp->writeResponse();
     }
 
+    return returnString;
 }
 
 std::string Room::getNextRoomId(std::string answerLine) {

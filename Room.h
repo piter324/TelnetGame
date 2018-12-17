@@ -56,9 +56,9 @@ public:
         responseListSize++;
     }
 
-    void writeRoomDescription();
+    std::string writeRoomDescription();
 
-    void writeResponses();
+    std::string writeResponses();
 
     //funkcja ktora przyjmuje jako parametr ID odpowiedzi ( A/B/C ) i podaje nazwe kolejnego pliku
     //poniewaz telnet przesyla cale linijki przyjmujemy od uzytkownika String i ucinamy do pierwszej litery
