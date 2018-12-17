@@ -103,7 +103,7 @@ bool AutorizationController::registerUser(std::string username, std::string pass
     if(anyUser)
         content = "\n" + username + ":" + passw;
     else
-        content =  username + ":" + passw + "\n";
+        content =  username + ":" + passw;
     std::cout << "Dajemy content: " << content;
 
     
