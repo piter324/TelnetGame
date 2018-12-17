@@ -63,12 +63,14 @@ bool AutorizationController::registerUser(std::string username, std::string pass
     std::ifstream dbFile;
     dbFile.open(pathToUserDatabase_);
     bool userFound = false;
-    std::cout << "username = " << username << " ;password = " << passw << std::endl;
+    bool anyUser = false;
+    std::cout << "username = " << username << " ;password " << passw << std::endl;
     if (dbFile) {
         std::string userInfo;
         while (!userFound && getline (dbFile,userInfo) ) {
            // std::cout << "szukamy... " << userInfo.length() <<" " << username.length() << " " << passw.length() << std::endl;
            //     std::cout << "kandydat... " << std::endl;
+                anyUser = true;
                 std::size_t posUsername = userInfo.find(username);
                 std::size_t posSeparator = userInfo.find(":");
                 std::cout << "posUsername = " << posUsername << " ;posSeparator " << posSeparator
@@ -85,8 +87,14 @@ bool AutorizationController::registerUser(std::string username, std::string pass
     }
 
     //content preparing
-    std::string content = username + ":" + passw + "\n";
-    std::cout << "Dajemy content: " << content; 
+    std::string content;
+    if(anyUser)
+        content = "\n" + username + ":" + passw;
+    else
+        content =  username + ":" + passw + "\n";
+    std::cout << "Dajemy content: " << content;
+
+    
 
     //MUTEX?
     std::ofstream dbFile_app;
