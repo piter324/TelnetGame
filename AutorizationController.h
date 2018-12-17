@@ -15,7 +15,7 @@
 
 class AutorizationController {
     public:
-        AutorizationController(std::string pathToUserDatabase = std::string("users_test.db"),
+        AutorizationController(std::string pathToUserDatabase = std::string("users.db"),
          std::string pathToUserFolder = std::string("loggedUsers/") ) {
             pathToUserDatabase_ = pathToUserDatabase;
             pathToUserFolder_ = pathToUserFolder;
