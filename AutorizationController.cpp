@@ -16,6 +16,12 @@ bool AutorizationController::isLoggedIn(std::string username) {
 
 bool AutorizationController::logIn(std::string username, std::string passw) {
     std::cout << "Uruchamiamy funkcje logIn z param " << username << std::endl;
+    std::size_t posSep = username.find(":");
+    if (posSep != std::string::npos)
+        return false; //innapropriate username
+    poseSep = passw.find(":");
+        if (posSep != std::string::npos)
+        return false; //innapropriate password
     std::ifstream dbFile;
     dbFile.open(pathToUserDatabase_);
     bool userFound = false;
@@ -59,6 +65,12 @@ bool AutorizationController::logOut(std::string username) {
 
 //untested!!!
 bool AutorizationController::registerUser(std::string username, std::string passw) {
+    std::size_t posSep = username.find(":");
+    if (posSep != std::string::npos)
+        return false; //innapropriate username
+    poseSep = passw.find(":");
+    if (posSep != std::string::npos)
+        return false; //innapropriate password
     // check if this username exists
     std::ifstream dbFile;
     dbFile.open(pathToUserDatabase_);
