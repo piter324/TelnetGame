@@ -74,7 +74,7 @@ int FileHandler::constructRoomList() {
             return FAIL;
         }
 
-        //kazda czynnos jest opisana 3 zmiennymi
+        // kazda czynnos jest opisana 3 zmiennymi
         // pokoj - roomId, roomHeader, roomDescription
         // odpowiedz - responseId, responseText, responseNextAction
         // po kazdych trzech wykonaniach petli bedze tworzony odpowiedni obiekt
@@ -139,3 +139,5 @@ Room *FileHandler::getNextRoom(std::string roomID) {
 Room *FileHandler::getFirstRoom() {
     return getNextRoom(STARTING_POINT);
 }
+
+
