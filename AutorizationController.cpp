@@ -35,10 +35,12 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
         }
         dbFile.close();
         if(userFound) {
+            bool successInCreating = false;
             std::cout << "tworzymy plik gracza" << std::endl;
             std::ofstream userFile(pathToUserFolder_ + username);
+            if (userFile) successInCreating = true;
             userFile.close();
-            return true;
+            return successInCreating;
         }
             
     }
@@ -61,7 +63,7 @@ bool AutorizationController::registerUser(std::string username, std::string pass
     std::ifstream dbFile;
     dbFile.open(pathToUserDatabase_);
     bool userFound = false;
-    std::cout << "username = " << username << " ;password " << passw << std::endl;
+    std::cout << "username = " << username << " ;password = " << passw << std::endl;
     if (dbFile) {
         std::string userInfo;
         while (!userFound && getline (dbFile,userInfo) ) {
