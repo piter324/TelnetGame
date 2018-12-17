@@ -3,6 +3,7 @@
 //
 
 #include "FileHandler.h"
+#include "MessageUsers.h"
 
 int main(int argc, char* argv[]){
 
@@ -10,8 +11,8 @@ int main(int argc, char* argv[]){
 //        FileHandler::getInstance().writeRoom(i);
 //    }
 
-
-    Room* currentRoom = FileHandler::getInstance().getFirstRoom();
+/********** TEST CHODZENIA PO POKOJACH **********/
+/*    Room* currentRoom = FileHandler::getInstance().getFirstRoom();
     currentRoom->writeRoomDescription();
 
     std::string response , roomId;
@@ -32,8 +33,13 @@ int main(int argc, char* argv[]){
             std::cout << roomId << std::endl;
             currentRoom->writeResponses();
         }
-    }
+    }*/
 
+    /********* TEST WIADOMOSCI **********/
+
+    MessageUsers messages;
+    messages.telnetOpenMessages("bcybulsk");
+    messages.telnetOpenSingleMessage("tel bcybulsk 2");
     return 0;
 
 }
