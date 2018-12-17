@@ -7,6 +7,7 @@
 
 #include <string>
 #include <fstream>
+#include <istream>
 #include <dirent.h>
 #include <sstream>
 #include <vector>

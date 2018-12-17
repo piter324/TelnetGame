@@ -6,7 +6,8 @@
 
 std::string AdminController::serverReset()
 {
-    system("exec rm -r " + activeUsersPath);
+    std::string command = "exec rm -r " + activeUsersPath;
+    system(command.c_str());
     return("Server restarted.");
 }
 
@@ -19,15 +20,18 @@ std::string AdminController::showActivePlayers()
     AutorizationController autorizationController;
     DIR *dir;
     struct dirent *ent;
-
-    if(dir.opendir(activeUsersPath) != NULL)
+    dir = opendir(activeUsersPath.c_str());
+    if(dir != nullptr)
     {
-        while(ent = readdir(dir) != NULL)
+        ent = readdir(dir);
+        while(ent != nullptr)
         {
             std::string fileName = ent->d_name;
             std::string nick;
-            getline(fileName, nick, '.');
+            std::stringstream stream(fileName);
+            std::getline(stream, nick, '.');
             result+=nick + "\r\n";
+            ent = readdir(dir);
         }
         closedir(dir);
         return result;
@@ -47,11 +51,10 @@ std::string AdminController::showAllUsers()
     {
         while(!file.eof())
         {
-            getline(file, line);
-            getline(line, nick, ':');
-            result += nick;
-            if(!file.eof())
-                result +="\r\n";
+            std::getline(file, line);
+            std::stringstream stream(line);
+            std::getline(stream, nick, ':');
+            result += nick + "\r\n";
         }
         return result;
     }
@@ -77,8 +80,9 @@ std::string AdminController::deleteUser(std::string user)
     {
         while(!file.eof())
         {
-            getline(file, line);
-            getline(line, nick, ':');
+            std::getline(file, line);
+            std::stringstream stream(line);
+            std::getline(stream, nick, ':');
             if(nick==user)
             {
                 // delete user
@@ -100,7 +104,7 @@ std::string AdminController::request(std::string command)
 
     while(stream.good() ){
         std::string tmp;
-        getline(stream, tmp, ' ');
+        std::getline(stream, tmp, ' ');
         commandVector.push_back(tmp);
         }
 
@@ -136,8 +140,8 @@ std::string AdminController::request(std::string command)
         else result = "Argument " + commandVector[1] + "is not valid.";
     }
     else if(commandVector[0]=="help")
-        result = "Commands:\r\n kick [username] \r\n delete [username] \r\n restart \r\n show all \r\n show active");
-    else (result = "Unknown command : " + command);
+        result = "Commands:\r\n kick [username] \r\n delete [username] \r\n restart \r\n show all \r\n show active";
+    else result = "Unknown command : " + command;
 
     return result;
 }
