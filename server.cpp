@@ -8,6 +8,10 @@
 #include <arpa/inet.h> //inet_ntoa
 #include <unistd.h> //fork
 
+#include "AutorizationController.h"
+#include "AdminController.h"
+#include "FileHandler.h"
+
 #define SERVER_PORT 3130
 #define QUEUE_SIZE 16
 #define BUFFER_SIZE 10
@@ -37,11 +41,11 @@ void graceful_TCP_shutdown(){
 }
 
 void close_parent_swap_for_child(int clientSocketFd){
-    printf("Closing: %d - client: %d\n", socketFd, clientSocketFd);
+    // printf("Closing: %d - client: %d\n", socketFd, clientSocketFd);
     close(socketFd);
     child = true;
     socketFd = clientSocketFd;
-    printf("%d - %d\n", socketFd, clientSocketFd);
+    // printf("%d - %d\n", socketFd, clientSocketFd);
 }
 
 void send_message(std::string message, bool prompt = true){
@@ -117,6 +121,21 @@ int main(int argc, char* argv[]){
             close_parent_swap_for_child(clientSocketFd); // Close not fully associated parent socket
             printf("Connection from %s on port %d is open\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
             
+            #define WELCOME 0
+            #define LOG_IN_UNAME 1
+            #define LOG_IN_PASS 2
+            #define BACK_TO_WELCOME 3
+            #define ROOM_NAV 4
+            #define ADMIN_PASS 5
+            #define REGISTER_UNAME 6
+            #define REGISTER_PASS 7
+            #define ADMIN_SESSION 8
+
+            std::string uname, pass;
+            int state = WELCOME; // current state of a server
+            AutorizationController auth = AutorizationController();
+            AdminController admin = AdminController();
+
             while(1) { // client event loop
 
                 int message_index = 0;
@@ -125,7 +144,15 @@ int main(int argc, char* argv[]){
                 char buffer[BUFFER_SIZE]; // buffer for incoming messages
                 for(int i=0;i<BUFFER_SIZE;i++) buffer[i] = '\0'; // zero buffer out
 
-                send_message("Welcome to Secrets of Elka!\r\nFirst, you need to know some rules:\r\n 1.");
+                switch(state) { // send message to user
+                    case WELCOME:
+                        send_message("Witamy w 'Pogoni za A+'!\r\nNajpierw kilka zasad:\r\n 1. Nie testujemy wejscia za pomoca 'dupa'. \r\n 2. W nawiasach kwardratowych napisalismy komende (lub litere), ktora nalezy wpisac, aby wywolac przypisana do niej akcje\r\n Co chcesz zrobic: \r\n[login] Zaloguj się\r\n[register] Zarejestruj się\r\n[admin] Rozpocznij sesje admina\r\n[exit] Wyjdz");
+                        break;
+                    case BACK_TO_WELCOME:
+                        send_message("Co chcesz zrobic?\r\n[back] Sprobuj jeszcze raz\r\n[exit] Wyjdz");
+                        break;
+                }
+
                 while(1){
                     int bytesRead = read(clientSocketFd, buffer, BUFFER_SIZE);
                     if(bytesRead < 1){ //cliens has lost connection
@@ -163,20 +190,93 @@ int main(int argc, char* argv[]){
                     }
                 }
                 message_index = 0;
+                message = message.substr(0, message.size()-2);
+                // printf("%s\n", message);
                 
-                if(message.compare("joke\r\n") == 0){
-                    send_message("What color is the mailbox inside?\r\n– Infrared.\r\n");
+                if(message == "joke"){
+                    send_message("What color is the mailbox inside?\r\n> Infrared.\r\n");
                 }
                
-                if(message.compare("exit\r\n") == 0) {
+                if(message == "exit") {
                     printf("Connection from %s is on port %d closing\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
                     graceful_TCP_shutdown();
                     return 0;
+                }
+
+                switch(state) { // send message to user
+                    case WELCOME:
+                        if(message == "login") {
+                            state = LOG_IN_UNAME;
+                            send_message("Podaj swoja nazwe uzytkownika:");
+                        }
+                        else if(message == "register") {
+                            state = REGISTER_UNAME;
+                            send_message("Podaj nazwe nowego uzytkownika: ");
+                        }
+                        else if(message == "admin") {
+                            state = ADMIN_PASS;
+                            send_message("Podaj haslo administratora: ");
+                        }
+                        break;
+                    
+                    case LOG_IN_UNAME:
+                        uname = message;
+                        state = LOG_IN_PASS;
+                        send_message("Podaj swoje haslo:");
+                        break;
+
+                    case LOG_IN_PASS:
+                        pass = message;
+                        if(auth.logIn(uname, pass)) {
+                            send_message("Zalogowanie przebieglo pomyslnie");
+                            state = ROOM_NAV;
+                        } else {
+                            send_message("Bledna nazwa uzytkownika, haslo lub uzytkownik nie znaleziony.");
+                            state = BACK_TO_WELCOME;
+                            uname = "";
+                            pass = "";
+                        }
+                        break;
+
+                    case BACK_TO_WELCOME:
+                        if(message == "back") state = WELCOME;
+                        break;
+
+                    case REGISTER_UNAME:
+                        uname = message;
+                        state = REGISTER_PASS;
+                        send_message("Podaj haslo nowego uzytkownika:");
+                        break;
+
+                    case REGISTER_PASS:
+                        pass = message;
+                        state = BACK_TO_WELCOME;
+                        if(auth.registerUser(uname, pass)) {
+                            send_message("Pomyslnie zarejestrowano uzytkownika");
+                        } else {
+                            send_message("Rejestracja nieudana");
+                        }
+                        uname = "";
+                        pass = "";
+                        break;
+                    
+
+                    case ADMIN_PASS:
+                        if(message == "admin") { // admin password correct
+                            state = ADMIN_SESSION;
+                            
+                        } else {
+                            send_message("Niepoprawne haslo administratora");
+                            state = BACK_TO_WELCOME;
+                        }
+                        break;
+                    
+                    case ADMIN_SESSION:
+                        send_message(admin.request(message));
+                        break;
                 }
             }
         }
         close(clientSocketFd); // Close child socket - served by forked process
     }
-
-    
 }

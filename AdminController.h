@@ -6,14 +6,25 @@
 #define ADMIN_CONTROLLER_H
 
 #include <string>
+#include <fstream>
+#include <istream>
+#include <dirent.h>
+#include <sstream>
+#include <vector>
+#include "AutorizationController.h"
 
 class AdminController
 {
-    void serverReset();
-    void showActivePlayers();
-    void showAllUsers();
-    void kickUser(std::string user);
-    void deleteUser(std::string user);
+    const std::string usersFile="users.db";
+    const std::string activeUsersPathForRestart="loggedUsers/*";
+    const std::string activeUsersPathToShowList="loggedUsers/";
+    std::string serverReset();
+    std::string showActivePlayers();
+    std::string showAllUsers();
+    std::string kickUser(std::string user);
+    std::string deleteUser(std::string user);
+public:
+    std::string request(std::string command);
 };
 
 
