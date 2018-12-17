@@ -26,6 +26,5 @@ std::string RoomController::request(std::string command)
         {
             result = roomId;
         }
-    }
     return result;
 }

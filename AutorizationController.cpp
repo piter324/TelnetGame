@@ -19,7 +19,7 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
     std::size_t posSep = username.find(":");
     if (posSep != std::string::npos)
         return false; //innapropriate username
-    poseSep = passw.find(":");
+    posSep = passw.find(":");
         if (posSep != std::string::npos)
         return false; //innapropriate password
     std::ifstream dbFile;
@@ -68,7 +68,7 @@ bool AutorizationController::registerUser(std::string username, std::string pass
     std::size_t posSep = username.find(":");
     if (posSep != std::string::npos)
         return false; //innapropriate username
-    poseSep = passw.find(":");
+    posSep = passw.find(":");
     if (posSep != std::string::npos)
         return false; //innapropriate password
     // check if this username exists

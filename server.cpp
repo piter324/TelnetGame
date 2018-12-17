@@ -10,7 +10,7 @@
 
 #include "AutorizationController.h"
 #include "AdminController.h"
-#include "FileHandler.h"
+#include "RoomController.h"
 
 #define SERVER_PORT 3130
 #define QUEUE_SIZE 16
@@ -49,7 +49,6 @@ void close_parent_swap_for_child(int clientSocketFd){
 }
 
 void send_message(std::string message, bool prompt = true){
-    message = "\r\n" + message + "\r\n";
     int charsToSend = message.length();
     std::string toSend;
 
@@ -67,7 +66,7 @@ void send_message(std::string message, bool prompt = true){
     }
 
     if(prompt){
-        toSend = "> ";
+        toSend = "\r\n> ";
         send(socketFd, toSend.c_str(), toSend.length(), 0);
     }
 }
@@ -134,9 +133,9 @@ int main(int argc, char* argv[]){
 
             std::string uname, pass;
             int state = WELCOME; // current state of a server
-            bool needToLogout = false;
             AutorizationController auth = AutorizationController();
             AdminController admin = AdminController();
+            RoomController roomc = RoomController();
 
             while(1) { // client event loop
 
@@ -159,7 +158,7 @@ int main(int argc, char* argv[]){
                     int bytesRead = read(clientSocketFd, buffer, BUFFER_SIZE);
                     if(bytesRead < 1){ //cliens has lost connection
                         printf("Client %s disconnected\n", inet_ntoa(clientAddress.sin_addr));
-                        auth.logOut(uname);
+                        if(uname != "") auth.logOut(uname);                        
                         graceful_TCP_shutdown();
                         return 0;
                     }
@@ -176,7 +175,7 @@ int main(int argc, char* argv[]){
                         }
                         else if((int)buffer[i] == 3) { // Ctrl+C pressed
                             printf("Connection from %s is on port %d closing due to sent Ctrl+C\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
-                            auth.logOut(uname);                            
+                            if(uname != "") auth.logOut(uname);                            
                             graceful_TCP_shutdown();
                             return 0;
                         }
@@ -203,6 +202,7 @@ int main(int argc, char* argv[]){
                
                 if(message == "exit") {
                     printf("Connection from %s is on port %d closing\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
+                    if(uname != "") auth.logOut(uname);                            
                     auth.logOut(uname);
                     graceful_TCP_shutdown();
                     return 0;
@@ -233,7 +233,8 @@ int main(int argc, char* argv[]){
                     case LOG_IN_PASS:
                         pass = message;
                         if(auth.logIn(uname, pass)) {
-                            send_message("Zalogowanie przebieglo pomyslnie");
+                            send_message("Zalogowanie przebieglo pomyslnie", false);
+                            // send_message(roomc.run());
                             state = ROOM_NAV;
                         } else {
                             send_message("Bledna nazwa uzytkownika, haslo lub uzytkownik nie znaleziony.", false);
@@ -282,7 +283,7 @@ int main(int argc, char* argv[]){
                         break;
                     
                     case ROOM_NAV:
-                        // TODO
+                        send_message(roomc.request(message));
                         break;
                 }
             }
