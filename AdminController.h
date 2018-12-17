@@ -15,8 +15,8 @@
 
 class AdminController
 {
-    const std::string usersFile="../users.db";
-    const std::string activeUsersPath="../loggedUsers/*";
+    const std::string usersFile="users.db";
+    const std::string activeUsersPath="loggedUsers/*";
     std::string serverReset();
     std::string showActivePlayers();
     std::string showAllUsers();
