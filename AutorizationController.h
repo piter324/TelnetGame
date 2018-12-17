@@ -24,6 +24,7 @@ class AutorizationController {
         bool isLoggedIn(std::string username);
         bool logIn(std::string username, std::string passw);
         bool logOut(std::string username);
+        bool registerUser(std::string username, std::string passw);
     private:
         std::string pathToUserDatabase_;
         std::string pathToUserFolder_;
