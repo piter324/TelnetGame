@@ -46,7 +46,7 @@ private:
     FileHandler& operator=(const FileHandler&);
     ~FileHandler() = default;
 
-    int constructRoomList() ;
+    int constructRoomList();
 
     // std::string removeSpaces(std::string str)
     // {
