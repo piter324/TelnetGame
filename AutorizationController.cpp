@@ -23,7 +23,7 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
         std::string userInfo;
         while (!userFound && getline (dbFile,userInfo) ) {
            // std::cout << "szukamy... " << userInfo.length() <<" " << username.length() << " " << passw.length() << std::endl;
-            if(userInfo.length() == username.length() + passw.length() + 2) {
+            if(userInfo.length() == username.length() + passw.length() + 1) {
                 std::cout << "kandydat... " << std::endl;
                 std::size_t posUsername = userInfo.find(username);
                 std::size_t posPasswd = userInfo.find(passw);
@@ -71,8 +71,7 @@ bool AutorizationController::registerUser(std::string username, std::string pass
                 std::size_t posSeparator = userInfo.find(":");
                 std::cout << "posUsername = " << posUsername << " ;posSeparator " << posSeparator
                 << " len = " << username.length() << std::endl;
-                std::cout <<  
-                if(posUsername == 0 && username.length() = posSeparator) {
+                if(posUsername == 0 && username.length() == posSeparator) {
                     userFound = true;
                 }
             }
