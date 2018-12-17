@@ -4,28 +4,89 @@
 
 #include "AdminController.h"
 
-void AdminController::serverReset()
+std::string AdminController::serverReset()
 {
-    //TODO
+    system("exec rm -r " + activeUsersPath);
+    return("Server restarted.");
 }
 
-void AdminController::showActivePlayers()
+std::string AdminController::showActivePlayers()
 {
-    //ActiveUsers::getInstance.getList();
+    std::string line;
+    std::string nick;
+    std::string result;
+
+    AutorizationController autorizationController;
+    DIR *dir;
+    struct dirent *ent;
+
+    if(dir.opendir(activeUsersPath) != NULL)
+    {
+        while(ent = readdir(dir) != NULL)
+        {
+            std::string fileName = ent->d_name;
+            std::string nick;
+            getline(fileName, nick, '.');
+            result+=nick + "\r\n";
+        }
+        closedir(dir);
+        return result;
+    }
+    return("Cannot enter location \"" + activeUsersPath + "\".");
 }
 
-void AdminController::showAllUsers()
+std::string AdminController::showAllUsers()
 {
-    //Users::getInstance.getList();
+    std::fstream file;
+    file.open(usersFile, std::ios::in);
+    std::string line;
+    std::string nick;
+    std::string result;
+
+    if(file.good())
+    {
+        while(!file.eof())
+        {
+            getline(file, line);
+            getline(line, nick, ':');
+            result += nick;
+            if(!file.eof())
+                result +="\r\n";
+        }
+        return result;
+    }
+    else std::cout<<"Cannot open file \""<<usersFile<<"\"."<<std::endl;
 }
 
-void AdminController::kickUser(std::string user)
+//kick user == logout user
+std::string AdminController::kickUser(std::string user)
 {
-    //ActiveUsers::getInstance.kickUser(user);
+    AutorizationController autorizationController;
+    if(autorizationController.logOut(user))
+        return ("User \"" + user + "\" was kicked from the server.");
+    return ("User \"" + user + "\" is not active or does not exist.");
 }
 
-void AdminController::deleteUser(std::string user)
+std::string AdminController::deleteUser(std::string user)
 {
-    // this->kickUser(user);
-    // Users::getInstance.deleteUser(std::string user);
+    std::fstream file;
+    file.open(usersFile, std::ios::in);
+    std::string line;
+    std::string nick;
+    if(file.good())
+    {
+        while(!file.eof())
+        {
+            getline(file, line);
+            getline(line, nick, ':');
+            if(nick==user)
+            {
+                // delete user
+                return  ("User \""+ user + "\"deleted.");
+            }
+        }
+        return ("User \""+ user + "\"does not exist.");
+    }
+    else return("Cannot open file \"" + usersFile + "\".");
+
 }
