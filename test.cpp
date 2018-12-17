@@ -40,7 +40,10 @@ int main(int argc, char* argv[]){
     MessageUsers messages;
     messages.telnetOpenMessages("Ala");
     std::cout<<messages.telnetOpenMessages("Ala");
-    std::cout<<messages.telnetOpenSingleMessage("tel Ala 2");
-    messages.telnetSendMessage("tel Ala bcybulsk wiadomosc do siebie ?");
+    std::cout<<messages.telnetOpenSingleMessage("tel Ala 3");
+    messages.telnetDeleteMessage("tel Ala 0");
+    std::cout<<messages.telnetOpenMessages("Ala");
+
+    //std::cout<<messages.telnetSendMessage("tel bcybulsk Ala wiadomosc do Ala.");
     return 0;
 }

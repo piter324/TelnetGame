@@ -13,6 +13,9 @@
 
 
 struct Message {
+    //reciever -> w domysle zawsze user u ktorego znajduje sie wiadomosc,
+    // potrzebne przy wysylaniu wiadomosci do przekazania parametru
+    std::string reciever;
     std::string sedner;
     std::string textMessage;
 
@@ -36,8 +39,6 @@ struct Message {
         this->textMessage = messageVector[1];
     }
 
-    std::string getSenderName() { return sedner ;}
-    std::string gettextMessage() { return textMessage; }
 };
 
 class MessageUsers {
@@ -52,21 +53,21 @@ private:
 
     std::string getFolderLocation();
 
+    std::string getRecieverFolderLocation(std::string reciever);
+
     Message newMessage(std::string telnetUsernameMessage);
 
     int getAllMessagesFromFile();
+
+    bool isRecieverInGame(std::string username);
 
 public:
 
     MessageUsers(){}
 
-    std::string telnetSendMessage(std::string revieverUserName, Message message);
-
     int telnetSendMessage(std::string telnetUsernameMessage);
 
-    void telnetDeleteMessage(std::string username);
-
-    void telnetRespondMessage(std::string username);
+    int telnetDeleteMessage(std::string telnetUserAndNumber);
 
     std::string telnetOpenMessages(std::string username);
 
@@ -74,5 +75,4 @@ public:
 
 };
 
-//todo usuwanie wiadomosci po odczytaniu, zapisywanie wszystkich wiadomosci do pliku po usuwaniu
 #endif //TELNETGAME_MESSAGEUSERS_H

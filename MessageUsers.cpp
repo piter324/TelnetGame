@@ -14,12 +14,46 @@ std::string MessageUsers::getFolderLocation() {
     return messageFileLocation;
 }
 
+std::string MessageUsers::getRecieverFolderLocation(std::string reciever) {
+    std::string messageFileLocation = "../messagesUsers/";
+    messageFileLocation += reciever;
+    return messageFileLocation;
+}
+
+
+bool MessageUsers::isRecieverInGame(std::string username) {
+    //funkcja porownuje nazw lowercase dla wygody uzytkownika
+    std::string tmpUsername, tmpLine;
+    for(int i = 0; i < username.length(); i++){
+        tmpUsername += std::tolower(username[i]);
+    }
+    std::string usersDataBaseLocation = "../users.db";
+    std::ifstream usersDataBaseFile;
+    usersDataBaseFile.open(usersDataBaseLocation);
+
+    if(!usersDataBaseFile.is_open()){
+        return false;
+    }
+
+    std::string line;
+    while( std::getline(usersDataBaseFile, line, ':') ){
+        for(int i = 0; i < line.length(); i++){
+            tmpLine += std::tolower(line[i]);
+        }
+        if(tmpUsername == tmpLine){
+            usersDataBaseFile.close();
+            return true;
+        }
+    }
+
+    return false;
+}
 
 Message MessageUsers::newMessage(std::string telnetUsernameMessage) {
     std::stringstream stream(telnetUsernameMessage);
     std::vector<std::string> messageVector;
 
-    //telnet przekazuje string "TELNET USERNAME RECIEVER MESSAGE" dzielimy go na 3 czesci i tworzymu obiekt message
+    //telnet przekazuje string "TELNET LLOGGED_USERNAME RECIEVER MESSAGE" dzielimy go na 3 czesci i tworzymu obiekt message
     while( stream.good()){
         std::string tmp;
         getline(stream, tmp, ' ');
@@ -31,7 +65,9 @@ Message MessageUsers::newMessage(std::string telnetUsernameMessage) {
     for(int i = 3; i < messageVector.size(); i++){
         messageText+=messageVector[i] + " ";
     }
-    Message tmpMessage(messageVector[2], messageText);
+
+    Message tmpMessage(messageVector[1], messageText);
+    tmpMessage.reciever = messageVector[2];
     return tmpMessage;
 }
 
@@ -60,12 +96,14 @@ int MessageUsers::getAllMessagesFromFile() {
 
 int MessageUsers::telnetSendMessage(std::string telnetUsernameMessage) {
     Message tmpMessage = newMessage(telnetUsernameMessage);
-    std::cout<<tmpMessage.sedner<<";"<<tmpMessage.textMessage<<"\n";
     //Kazdy uzytkownik z automatu ma przypisany plik
-    //Nalezy sprawdzic czy plik istnieje, jezeli nie to znaczy ze nie mozna wyslac wiadomosci
-    //TODO sprawdz czy user istnieje
+    //Nalezy sprawdzic czy user o danym nicku istnieje, jezeli nie to znaczy ze nie mozna wyslac wiadomosci
+    if(!isRecieverInGame(tmpMessage.reciever)){
+        return USER_DOESNT_EXIST;
+    }
+
     std::fstream messageFile;
-    messageFile.open(this->getFolderLocation(), std::fstream::in | std::fstream::out | std::fstream::app);
+    messageFile.open(this->getRecieverFolderLocation(tmpMessage.reciever), std::fstream::in | std::fstream::out | std::fstream::app);
 
     if(!messageFile.is_open()){
         return FILE_NOT_OPENED;
@@ -77,12 +115,48 @@ int MessageUsers::telnetSendMessage(std::string telnetUsernameMessage) {
     return SUCCES;
 }
 
-void MessageUsers::telnetDeleteMessage(std::string username) {
-    setUsername(username);
-}
+int MessageUsers::telnetDeleteMessage(std::string telnetUserAndNumber) {
+    //Zakladam, ze funkcja jest wywolywana tylko i wylacznie z wnetrza "okna" pojedynczej wiadomosci
+    // albo jest wywolywana automatycznie, albo user ja wywoluje poprzez napisanie jakiegos delete czytajac wiadomosc
+    // dalej zakladam, ze sender i numer wiadomosci ( z wywolania instrukcji openSingleMessage ) sa przechowywane
+    // i sa przekazywane jako parametr funkcji deleteMessage
+    std::stringstream stream(telnetUserAndNumber);
+    std::vector<std::string> messageVector;
 
-void MessageUsers::telnetRespondMessage(std::string username) {
+    //telnet przekazuje string "TELNET USERNAME NUMBER" dzielimy go na 3 czesci i tworzymu obiekt message
+    int i = 0;
+    while (i < 3) {
+        std::string tmp;
+        getline(stream, tmp, ' ');
+        messageVector.push_back(tmp);
+        i++;
+    }
+
+    username = messageVector[1];
     setUsername(username);
+    int messageNumber = std::stoi(messageVector[2]);
+
+    //funkcja jest wywolywana z okna pojedynczej wiadomosci, wiec wiadomosc na pewno istnieje
+
+    messages.erase(messages.begin()+messageNumber);
+
+    std::ofstream messageFile;
+
+    messageFile.open(this->getFolderLocation());
+
+    if(!messageFile.is_open()){
+        return FILE_NOT_OPENED;
+    }
+
+    std::string messageLine;
+    for(int i = 0; i < messages.size(); i++){
+        messageLine = messages[i].sedner + ";" + messages[i].textMessage + "\n";
+        messageFile << messageLine;
+    }
+
+    messageFile.close();
+    return SUCCES;
+
 }
 
 std::string MessageUsers::telnetOpenMessages(std::string username) {
@@ -122,11 +196,10 @@ std::string MessageUsers::telnetOpenSingleMessage(std::string telnetUserAndNumbe
     int messageNumber = std::stoi(messageVector[2]);
 
     if(messageNumber >= messages.size() || messageNumber < 0){
-        return "Nie odnaleziono wiadomosci o danym numerze";
+        return "Nie odnaleziono wiadomosci o danym numerze.\r\n";
     }
 
-    std::string tmpmessage = messages[messageNumber].sedner + " " + messages[messageNumber].textMessage;
+    std::string tmpmessage = messages[messageNumber].sedner + " " + messages[messageNumber].textMessage + "\r\n";
 
     return tmpmessage;
 }
-
