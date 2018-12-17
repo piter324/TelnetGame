@@ -6,7 +6,7 @@
 
 std::string AdminController::serverReset()
 {
-    std::string command = "exec rm -r " + activeUsersPath;
+    std::string command = "exec rm -r " + activeUsersPathForRestart;
     system(command.c_str());
     return("Server restarted.");
 }
@@ -16,11 +16,12 @@ std::string AdminController::showActivePlayers()
     std::string line;
     std::string nick;
     std::string result;
+    int activeUsersAmount = 0;
 
     AutorizationController autorizationController;
     DIR *dir;
     struct dirent *ent;
-    dir = opendir(activeUsersPath.c_str());
+    dir = opendir(activeUsersPathToShowList.c_str());
     if(dir != nullptr)
     {
         ent = readdir(dir);
@@ -31,12 +32,15 @@ std::string AdminController::showActivePlayers()
             std::stringstream stream(fileName);
             std::getline(stream, nick, '.');
             result+=nick + "\r\n";
+            ++activeUsersAmount;
             ent = readdir(dir);
         }
         closedir(dir);
+        if(!activeUsersAmount)
+            result = "No active players.";
         return result;
     }
-    return("Cannot enter location \"" + activeUsersPath + "\".");
+    return("Cannot enter location \"" + activeUsersPathToShowList + "\".");
 }
 
 std::string AdminController::showAllUsers()
@@ -46,6 +50,7 @@ std::string AdminController::showAllUsers()
     std::string line;
     std::string nick;
     std::string result;
+    int usersAmount = 0;
 
     if(file.good())
     {
@@ -55,7 +60,10 @@ std::string AdminController::showAllUsers()
             std::stringstream stream(line);
             std::getline(stream, nick, ':');
             result += nick + "\r\n";
+            ++usersAmount;
         }
+        if(!usersAmount)
+            result = "No players found.";
         return result;
     }
     else std::cout<<"Cannot open file \""<<usersFile<<"\"."<<std::endl;
