@@ -38,8 +38,9 @@ int main(int argc, char* argv[]){
     /********* TEST WIADOMOSCI **********/
 
     MessageUsers messages;
-    messages.telnetOpenMessages("bcybulsk");
-    messages.telnetOpenSingleMessage("tel bcybulsk 2");
+    messages.telnetOpenMessages("Ala");
+    std::cout<<messages.telnetOpenMessages("Ala");
+    std::cout<<messages.telnetOpenSingleMessage("tel Ala 2");
+    messages.telnetSendMessage("tel Ala bcybulsk wiadomosc do siebie ?");
     return 0;
-
 }

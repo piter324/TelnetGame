@@ -47,13 +47,14 @@ private:
     std::vector<Message> messages;
 
     void setUsername(std::string username) { this->username = username; }
+
     std::string getUsername() { return this->username; }
 
     std::string getFolderLocation();
 
-    Message newMessage(std::string stringFromTelnet);
+    Message newMessage(std::string telnetUsernameMessage);
 
-    void getAllMessagesFromFile();
+    int getAllMessagesFromFile();
 
 public:
 
@@ -61,7 +62,7 @@ public:
 
     std::string telnetSendMessage(std::string revieverUserName, Message message);
 
-    std::string telnetSendMessage(std::string recieverAndMessage);
+    int telnetSendMessage(std::string telnetUsernameMessage);
 
     void telnetDeleteMessage(std::string username);
 

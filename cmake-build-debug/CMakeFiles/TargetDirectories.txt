@@ -1,0 +1,3 @@
+/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles/TelnetGame.dir

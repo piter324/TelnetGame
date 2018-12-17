@@ -2,6 +2,10 @@
 // Created by Bartosz Cybulski on 17/12/2018.
 //
 
+#define SUCCES 0
+#define FILE_NOT_OPENED -1
+#define USER_DOESNT_EXIST -2
+
 #include "MessageUsers.h"
 
 std::string MessageUsers::getFolderLocation() {
@@ -11,44 +15,66 @@ std::string MessageUsers::getFolderLocation() {
 }
 
 
-Message MessageUsers::newMessage(std::string stringFromTelnet) {
-    std::stringstream stream(stringFromTelnet);
+Message MessageUsers::newMessage(std::string telnetUsernameMessage) {
+    std::stringstream stream(telnetUsernameMessage);
     std::vector<std::string> messageVector;
 
-    //telnet przekazuje string "TELNET USERNAME MESSAGE" dzielimy go na 3 czesci i tworzymu obiekt message
-    int i = 0;
-    while( i < 2){
+    //telnet przekazuje string "TELNET USERNAME RECIEVER MESSAGE" dzielimy go na 3 czesci i tworzymu obiekt message
+    while( stream.good()){
         std::string tmp;
         getline(stream, tmp, ' ');
         messageVector.push_back(tmp);
-        i++;
     }
-    Message tmpMessage(messageVector[1], messageVector[2]);
+    setUsername(messageVector[1]);
+
+    std::string messageText;
+    for(int i = 3; i < messageVector.size(); i++){
+        messageText+=messageVector[i] + " ";
+    }
+    Message tmpMessage(messageVector[2], messageText);
     return tmpMessage;
 }
 
 
-void MessageUsers::getAllMessagesFromFile() {
-
+int MessageUsers::getAllMessagesFromFile() {
+    /*Funkcja odczytujaca wszystkie wiadomosci uzytkownika z pliku do pustej struktury*/
+    messages.clear();
     std::ifstream messageFile;
 
     messageFile.open(this->getFolderLocation());
 
     if(!messageFile.is_open()){
-        return;
+        return FILE_NOT_OPENED;
     }
 
     std::string line;
     while( std::getline(messageFile, line) ){
+        line.size();
         Message tmpMessage(line);
         messages.push_back(tmpMessage);
     }
 
     messageFile.close();
+    return SUCCES;
 }
 
-std::string MessageUsers::telnetSendMessage(std::string revieverUserName, Message message) {
-    return std::string();
+int MessageUsers::telnetSendMessage(std::string telnetUsernameMessage) {
+    Message tmpMessage = newMessage(telnetUsernameMessage);
+    std::cout<<tmpMessage.sedner<<";"<<tmpMessage.textMessage<<"\n";
+    //Kazdy uzytkownik z automatu ma przypisany plik
+    //Nalezy sprawdzic czy plik istnieje, jezeli nie to znaczy ze nie mozna wyslac wiadomosci
+    //TODO sprawdz czy user istnieje
+    std::fstream messageFile;
+    messageFile.open(this->getFolderLocation(), std::fstream::in | std::fstream::out | std::fstream::app);
+
+    if(!messageFile.is_open()){
+        return FILE_NOT_OPENED;
+    }
+
+    std::string messageString = tmpMessage.sedner + ";" + tmpMessage.textMessage + "\n";
+    messageFile << messageString;
+    messageFile.close();
+    return SUCCES;
 }
 
 void MessageUsers::telnetDeleteMessage(std::string username) {
@@ -60,6 +86,7 @@ void MessageUsers::telnetRespondMessage(std::string username) {
 }
 
 std::string MessageUsers::telnetOpenMessages(std::string username) {
+    /*Funkcja otwierajaca wszystkie wiadomosci*/
     setUsername(username);
     getAllMessagesFromFile();
     std::string allMessages;
@@ -76,24 +103,29 @@ std::string MessageUsers::telnetOpenMessages(std::string username) {
 }
 
 std::string MessageUsers::telnetOpenSingleMessage(std::string telnetUserAndNumber) {
+    /*Funkcja otwierajaca wiadomosc o podanym numerze*/
+
     std::stringstream stream(telnetUserAndNumber);
     std::vector<std::string> messageVector;
-//todo popraw odczytywanie konkretnej wiadomosci
 
-    //telnet przekazuje string "TELNET USERNAME INT(Number)" dzielimy go na 3 czesci i tworzymu obiekt message
+    //telnet przekazuje string "TELNET USERNAME NUMBER" dzielimy go na 3 czesci i tworzymu obiekt message
     int i = 0;
-    while (i < 2) {
+    while (i < 3) {
         std::string tmp;
         getline(stream, tmp, ' ');
         messageVector.push_back(tmp);
         i++;
     }
+
     username = messageVector[1];
     setUsername(username);
-    int messageNumber = std::atoi(messageVector[2].c_str());
+    int messageNumber = std::stoi(messageVector[2]);
+
+    if(messageNumber >= messages.size() || messageNumber < 0){
+        return "Nie odnaleziono wiadomosci o danym numerze";
+    }
 
     std::string tmpmessage = messages[messageNumber].sedner + " " + messages[messageNumber].textMessage;
-    std::cout << tmpmessage;
 
     return tmpmessage;
 }
