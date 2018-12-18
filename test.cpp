@@ -12,17 +12,19 @@ int main(int argc, char* argv[]){
 //    }
 
 /********** TEST CHODZENIA PO POKOJACH **********/
-/*    Room* currentRoom = FileHandler::getInstance().getFirstRoom();
+/********** WAZNE NALEZY POBIERAC CALA LINIE OD USERA *******/
+    Room* currentRoom = FileHandler::getInstance().getFirstRoom();
     currentRoom->writeRoomDescription();
 
     std::string response , roomId;
+    char res[50];
 
     while(true){
         std::cout<< "Co wybierasz ?"<<std::endl;
-        std::cin>>response;
+        std::cin.getline(res, 256);
 
         std::system(CLEAR);
-
+        response = res;
         roomId = currentRoom->getNextRoomId(response);
 
         if(roomId != "Nieprawidlowa odpowiedz. Podaj odpowiedz jeszcze raz") {
@@ -30,14 +32,15 @@ int main(int argc, char* argv[]){
             currentRoom->writeRoomDescription();
         }
         else {
-            std::cout << roomId << std::endl;
+            //std::cout << roomId << std::endl;
             currentRoom->writeResponses();
         }
-    }*/
+    }
+
 
     /********* TEST WIADOMOSCI **********/
 
-    MessageUsers messages;
+ /*   MessageUsers messages;
     messages.telnetOpenMessages("Ala");
     std::cout<<messages.telnetOpenMessages("Ala");
     std::cout<<messages.telnetOpenSingleMessage("tel Ala 3");
@@ -45,5 +48,6 @@ int main(int argc, char* argv[]){
     std::cout<<messages.telnetOpenMessages("Ala");
 
     //std::cout<<messages.telnetSendMessage("tel bcybulsk Ala wiadomosc do Ala.");
+    */
     return 0;
 }

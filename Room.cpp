@@ -4,6 +4,8 @@
 
 #include "Room.h"
 
+#include <sstream>
+
 std::string Room::writeRoomDescription() {
 
     std::cout<<this->getRoomHeader()<<".\n"<<this->getRoomDescription()<<"\n";
@@ -33,7 +35,32 @@ std::string Room::getNextRoomId(std::string answerLine) {
     int answerIdNumber = (int) answerId - 64;
 
     if(answerIdNumber <= getResponseListSize()){
-        return responseList[answerIdNumber - 1]->getResponseNextAction();
+        std::string responseNextAction = responseList[answerIdNumber - 1]->getResponseNextAction();
+        if(responseNextAction.find('#') == std::string::npos) {
+            return responseNextAction;
+        }
+        else{
+            std::string answerToQuestion = answerLine.erase(0, 2);
+
+            std::stringstream stream(responseNextAction);
+            std::vector<std::string> responseVector;
+
+            //jezeli odpowiedz ma format type#CORRECTANSWER#GO_TO_CORRECT#GO_TO_INCORRECT
+            std::string tmp;
+            while ( stream.good()) {
+                getline(stream, tmp, '#');
+                responseVector.push_back(tmp);
+            }
+
+            std::string corrrectAnswer = responseVector[1];
+            std::string correctLoc = responseVector[2];
+            std::string incorrectLoc = responseVector[3];
+            if(answerToQuestion == corrrectAnswer){
+                return correctLoc;
+            }
+            else
+                return incorrectLoc;
+        }
     }
     else
         return "Nieprawidlowa odpowiedz. Podaj odpowiedz jeszcze raz";
