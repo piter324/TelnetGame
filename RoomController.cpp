@@ -24,7 +24,7 @@ std::string RoomController::request(std::string command)
 
     roomId = currentRoom->getNextRoomId(command);
 
-    if(roomId != "Nieprawidlowa odpowiedz. Podaj odpowiedz jeszcze raz")
+    if(roomId != "Nieprawidlowy wybor. Podaj odpowiedz jeszcze raz")
         {
             std::cout << "room id = " << roomId << "\n";
             currentRoom = FileHandler::getInstance().getNextRoom(roomId);
