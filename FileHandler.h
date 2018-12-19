@@ -33,13 +33,14 @@ class FileHandler {
 private:
 
     const std::string locationsFileName = "locations.list";
-    const std::string locationLocationsFolder = "../locations/";
+    const std::string locationLocationsFolder = "locations/";
     std::vector<Room*> roomVector;
     int roomListSize;
 
     FileHandler() {
         this->roomListSize = 0;
-        if(constructRoomList() != SUCCESS)std::cout<<"FAILED!!!";
+        if(constructRoomList() != SUCCESS)
+            std::cout<<"FAILED!!!";
         //todo failed opening files
     }
     FileHandler(const FileHandler &);

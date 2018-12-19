@@ -1,6 +1,6 @@
 #include "AutorizationController.h"
 
-/* checks the existence of the user file */ 
+/* checks the existence of the user file */
 bool AutorizationController::isLoggedIn(std::string username) {
     std::cout << "Uruchamiamy funkcje isLoggedIn z param " << username << std::endl;
     std::ifstream file;
@@ -19,7 +19,7 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
     std::size_t posSep = username.find(":");
     if (posSep != std::string::npos)
         return false; //innapropriate username
-    std::cout << "user ok\n"; 
+    std::cout << "user ok\n";
     posSep = passw.find(":");
         if (posSep != std::string::npos)
         return false; //innapropriate password
@@ -50,7 +50,7 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
             userFile.close();
             return successInCreating;
         }
-            
+
     }
     dbFile.close();
     std::cout << "blad w otwieraniu pliku" << std::endl;
@@ -111,7 +111,7 @@ bool AutorizationController::registerUser(std::string username, std::string pass
         content =  username + ":" + passw;
     std::cout << "Dajemy content: " << content;
 
-    
+
 
     //MUTEX?
     std::ofstream dbFile_app;
@@ -122,7 +122,7 @@ bool AutorizationController::registerUser(std::string username, std::string pass
         dbFile_app.seekp(0,  dbFile_app.beg);
         return true;
     }
-    
+
     dbFile_app.close();
 
     return false;

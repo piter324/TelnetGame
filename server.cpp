@@ -120,7 +120,7 @@ int main(int argc, char* argv[]){
         if(fork() == 0){
             close_parent_swap_for_child(clientSocketFd); // Close not fully associated parent socket
             printf("Connection from %s on port %d is open\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
-            
+
             #define WELCOME 0
             #define LOG_IN_UNAME 1
             #define LOG_IN_PASS 2
@@ -147,17 +147,17 @@ int main(int argc, char* argv[]){
 
                 switch(state) { // send message to user
                     case WELCOME:
-                        send_message("Witamy w 'Pogoni za A+'!\r\nNajpierw kilka zasad:\r\n 1. Nie testujemy wejscia za pomoca 'dupa'. \r\n 2. W nawiasach kwardratowych napisalismy komende (lub litere), ktora nalezy wpisac, aby wywolac przypisana do niej akcje\r\n Co chcesz zrobic: \r\n[login] Zaloguj sie\r\n[register] Zarejestruj sie\r\n[admin] Rozpocznij sesje admina\r\n[exit] Wyjdz");
+                        send_message("\r\n\r\nWitamy w 'Pogoni za A+'!\r\nNajpierw kilka zasad:\r\n 1. Nie testujemy wejscia za pomoca 'dupa'. \r\n 2. W nawiasach kwardratowych napisalismy komende (lub litere), ktora nalezy wpisac, aby wywolac przypisana do niej akcje\r\n Co chcesz zrobic: \r\n[login] Zaloguj sie\r\n[register] Zarejestruj sie\r\n[admin] Rozpocznij sesje admina\r\n[exit] Wyjdz\r\n");
                         break;
                     case BACK_TO_WELCOME:
-                        send_message("Co chcesz zrobic?\r\n[back] Wroc\r\n[exit] Wyjdz");
+                        send_message("Co chcesz zrobic?\r\n[back] Wroc\r\n[exit] Wyjdz\r\n");
                         break;
                 }
                 while(1){
                     int bytesRead = read(clientSocketFd, buffer, BUFFER_SIZE);
                     if(bytesRead < 1){ //cliens has lost connection
-                        printf("Client %s disconnected\n", inet_ntoa(clientAddress.sin_addr));
-                        if(uname != "") auth.logOut(uname);                        
+                        printf("Client %s disconnected\r\n", inet_ntoa(clientAddress.sin_addr));
+                        if(uname != "") auth.logOut(uname);
                         graceful_TCP_shutdown();
                         return 0;
                     }
@@ -173,8 +173,8 @@ int main(int argc, char* argv[]){
                             }
                         }
                         else if((int)buffer[i] == 3) { // Ctrl+C pressed
-                            printf("Connection from %s is on port %d closing due to sent Ctrl+C\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
-                            if(uname != "") auth.logOut(uname);                            
+                            printf("Connection from %s is on port %d closing due to sent Ctrl+C\r\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
+                            if(uname != "") auth.logOut(uname);
                             graceful_TCP_shutdown();
                             return 0;
                         }
@@ -185,24 +185,23 @@ int main(int argc, char* argv[]){
                             if((int)buffer[i] == '\n') break;
                         }
                     }
-                    
+
                     if(message[message.length()-1] == '\n') {
-                        printf("Message from %s:%d : %s\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port), message.c_str());
+                        printf("Message from %s:%d : %s\r\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port), message.c_str());
                         break;
                     }
                 }
                 message_index = 0;
                 message = message.substr(0, message.size()-2);
                 // printf("%s\n", message);
-                
+
                 if(message == "joke"){
                     send_message("What color is the mailbox inside?\r\n> Infrared.\r\n");
                 }
-               
+
                 if(message == "exit") {
-                    printf("Connection from %s is on port %d closing\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
-                    if(uname != "") auth.logOut(uname);                            
-                    auth.logOut(uname);
+                    printf("Connection from %s is on port %d closing\r\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
+                    if(uname != "") auth.logOut(uname);
                     graceful_TCP_shutdown();
                     return 0;
                 }
@@ -221,21 +220,21 @@ int main(int argc, char* argv[]){
                             send_message("Podaj haslo administratora: ");
                         }
                         break;
-                    
+
                     case LOG_IN_UNAME:
                         uname = message;
                         state = LOG_IN_PASS;
-                        send_message("Podaj swoje haslo:");
+                        send_message("Podaj swoje haslo: ");
                         break;
 
                     case LOG_IN_PASS:
                         pass = message;
                         if(auth.logIn(uname, pass)) {
-                            send_message("Zalogowanie przebieglo pomyslnie", false);
+                            send_message("Zalogowanie przebieglo pomyslnie\r\n", false);
                             send_message(roomc.run());
                             state = ROOM_NAV;
                         } else {
-                            send_message("Bledna nazwa uzytkownika, haslo lub uzytkownik nie znaleziony.", false);
+                            send_message("Bledna nazwa uzytkownika, haslo lub uzytkownik nie znaleziony.\r\n", false);
                             state = BACK_TO_WELCOME;
                             uname = "";
                             pass = "";
@@ -256,30 +255,30 @@ int main(int argc, char* argv[]){
                         pass = message;
                         state = BACK_TO_WELCOME;
                         if(auth.registerUser(uname, pass)) {
-                            send_message("Pomyslnie zarejestrowano uzytkownika", false);
+                            send_message("Pomyslnie zarejestrowano uzytkownika\r\n", false);
                         } else {
-                            send_message("Rejestracja nieudana", false);
+                            send_message("Rejestracja nieudana\r\n", false);
                         }
                         uname = "";
                         pass = "";
                         break;
-                    
+
 
                     case ADMIN_PASS:
                         if(message == "admin") { // admin password correct
                             state = ADMIN_SESSION;
                             send_message(admin.request("help"));
-                            
+
                         } else {
-                            send_message("Niepoprawne haslo administratora", false);
+                            send_message("Niepoprawne haslo administratora\r\n", false);
                             state = BACK_TO_WELCOME;
                         }
                         break;
-                    
+
                     case ADMIN_SESSION:
                         send_message(admin.request(message));
                         break;
-                    
+
                     case ROOM_NAV:
                         send_message(roomc.request(message));
                         break;

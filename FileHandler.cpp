@@ -6,13 +6,10 @@
 #include "FileHandler.h"
 
 void FileHandler::readFromFile() {
-    // czytanie z pliku , funkcja testowa , niepotrzebna do koncowego programu
 
     std::ifstream locationsFile;
 
     locationsFile.open(locationLocationsFolder+locationsFileName);
-
-    //std::cout<<locationLocationsFolder+locationsFileName<<"\n";
 
     if(!locationsFile.is_open()) {
         std::cout<<"Plik nie jest otwarty.\n";
@@ -29,7 +26,7 @@ void FileHandler::readFromFile() {
 
 }
 
-void FileHandler::currentPath() {
+/*void FileHandler::currentPath() {
     //funkcja testowa , niepotrzebna do koncowego programu
     char cCurrentPath[FILENAME_MAX];
 
@@ -39,11 +36,11 @@ void FileHandler::currentPath() {
         return;
     }
 
-    cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
+    cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; //not really required
 
     printf ("The current working directory is %s", cCurrentPath);
     //return cCurrentPath;
-}
+}*/
 
 int FileHandler::constructRoomList() {
 

@@ -9,7 +9,7 @@
 std::string Room::writeRoomDescription() {
     std::cout<<"CEBUL_writeroomDesctiption()\n";
 
-    std::string returnString = this->getRoomHeader()  + ".\n" + this->getRoomDescription() + "\n" + this->writeResponses();
+    std::string returnString = getRoomHeader()  + ".\r\n" + getRoomDescription() + "\r\n" + writeResponses();
     std::cout<<"CEBUL_writeroomDesctiption()\n";
     return returnString;
 }

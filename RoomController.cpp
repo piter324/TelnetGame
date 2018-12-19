@@ -6,9 +6,7 @@
 
 std::string RoomController::run()
 {
-    currentRoom =FileHandler::getInstance().getFirstRoom();
-//    Room* current = FileHandler::getInstance().getFirstRoom();
-//    this->currentRoom = current;
+    currentRoom = FileHandler::getInstance().getFirstRoom();
     return currentRoom->writeRoomDescription();
 }
 
