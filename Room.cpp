@@ -7,11 +7,10 @@
 #include <sstream>
 
 std::string Room::writeRoomDescription() {
+    std::cout<<"CEBUL_writeroomDesctiption()\n";
 
-    std::cout<<this->getRoomHeader()<<".\n"<<this->getRoomDescription()<<"\n";
-    this->writeResponses();
-    std::cout<<"\r\n";
-    std::string returnString = this->getRoomHeader() + ".\r\n" + this->getRoomDescription() + "\r\n" + this->writeResponses();
+    std::string returnString = this->getRoomHeader()  + ".\n" + this->getRoomDescription() + "\n" + this->writeResponses();
+    std::cout<<"CEBUL_writeroomDesctiption()\n";
     return returnString;
 }
 

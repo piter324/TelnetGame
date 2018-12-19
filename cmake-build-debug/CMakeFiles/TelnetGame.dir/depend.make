@@ -16,6 +16,14 @@ CMakeFiles/TelnetGame.dir/Room.cpp.o: ../Response.h
 CMakeFiles/TelnetGame.dir/Room.cpp.o: ../Room.cpp
 CMakeFiles/TelnetGame.dir/Room.cpp.o: ../Room.h
 
+CMakeFiles/TelnetGame.dir/server.cpp.o: ../AdminController.h
+CMakeFiles/TelnetGame.dir/server.cpp.o: ../AutorizationController.h
+CMakeFiles/TelnetGame.dir/server.cpp.o: ../FileHandler.h
+CMakeFiles/TelnetGame.dir/server.cpp.o: ../Response.h
+CMakeFiles/TelnetGame.dir/server.cpp.o: ../Room.h
+CMakeFiles/TelnetGame.dir/server.cpp.o: ../RoomController.h
+CMakeFiles/TelnetGame.dir/server.cpp.o: ../server.cpp
+
 CMakeFiles/TelnetGame.dir/test.cpp.o: ../FileHandler.h
 CMakeFiles/TelnetGame.dir/test.cpp.o: ../MessageUsers.h
 CMakeFiles/TelnetGame.dir/test.cpp.o: ../Response.h

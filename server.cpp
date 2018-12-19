@@ -153,7 +153,6 @@ int main(int argc, char* argv[]){
                         send_message("Co chcesz zrobic?\r\n[back] Wroc\r\n[exit] Wyjdz");
                         break;
                 }
-
                 while(1){
                     int bytesRead = read(clientSocketFd, buffer, BUFFER_SIZE);
                     if(bytesRead < 1){ //cliens has lost connection
@@ -207,7 +206,6 @@ int main(int argc, char* argv[]){
                     graceful_TCP_shutdown();
                     return 0;
                 }
-
                 switch(state) { // send message to user
                     case WELCOME:
                         if(message == "login") {
@@ -234,7 +232,7 @@ int main(int argc, char* argv[]){
                         pass = message;
                         if(auth.logIn(uname, pass)) {
                             send_message("Zalogowanie przebieglo pomyslnie", false);
-                            // send_message(roomc.run());
+                            send_message(roomc.run());
                             state = ROOM_NAV;
                         } else {
                             send_message("Bledna nazwa uzytkownika, haslo lub uzytkownik nie znaleziony.", false);
@@ -286,6 +284,8 @@ int main(int argc, char* argv[]){
                         send_message(roomc.request(message));
                         break;
                 }
+
+
             }
         }
         close(clientSocketFd); // Close child socket - served by forked process

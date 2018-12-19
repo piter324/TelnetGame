@@ -39,8 +39,8 @@ private:
 
     FileHandler() {
         this->roomListSize = 0;
-        constructRoomList();
-        // TODO co jezeli nie uda sie odczytac plikow
+        if(constructRoomList() != SUCCESS)std::cout<<"FAILED!!!";
+        //todo failed opening files
     }
     FileHandler(const FileHandler &);
     FileHandler& operator=(const FileHandler&);

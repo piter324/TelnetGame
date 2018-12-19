@@ -23,10 +23,12 @@ private:
 
 
     std::string getRoomHeader(){
+        std::cout<<"CEBUL_getROOMHEADER()=="<<roomHeader<<"\n";
         return roomHeader;
     }
 
     std::string getRoomDescription(){
+        std::cout<<"CEBUL_getROOMDescription()=="<<roomDescription<<"\n";
         return roomDescription;
     }
 

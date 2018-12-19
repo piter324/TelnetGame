@@ -57,28 +57,28 @@ include CMakeFiles/TelnetGame.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/TelnetGame.dir/flags.make
 
-CMakeFiles/TelnetGame.dir/test.cpp.o: CMakeFiles/TelnetGame.dir/flags.make
-CMakeFiles/TelnetGame.dir/test.cpp.o: ../test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TelnetGame.dir/test.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TelnetGame.dir/test.cpp.o -c "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/test.cpp"
+CMakeFiles/TelnetGame.dir/server.cpp.o: CMakeFiles/TelnetGame.dir/flags.make
+CMakeFiles/TelnetGame.dir/server.cpp.o: ../server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TelnetGame.dir/server.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TelnetGame.dir/server.cpp.o -c "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/server.cpp"
 
-CMakeFiles/TelnetGame.dir/test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TelnetGame.dir/test.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/test.cpp" > CMakeFiles/TelnetGame.dir/test.cpp.i
+CMakeFiles/TelnetGame.dir/server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TelnetGame.dir/server.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/server.cpp" > CMakeFiles/TelnetGame.dir/server.cpp.i
 
-CMakeFiles/TelnetGame.dir/test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TelnetGame.dir/test.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/test.cpp" -o CMakeFiles/TelnetGame.dir/test.cpp.s
+CMakeFiles/TelnetGame.dir/server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TelnetGame.dir/server.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/server.cpp" -o CMakeFiles/TelnetGame.dir/server.cpp.s
 
-CMakeFiles/TelnetGame.dir/test.cpp.o.requires:
+CMakeFiles/TelnetGame.dir/server.cpp.o.requires:
 
-.PHONY : CMakeFiles/TelnetGame.dir/test.cpp.o.requires
+.PHONY : CMakeFiles/TelnetGame.dir/server.cpp.o.requires
 
-CMakeFiles/TelnetGame.dir/test.cpp.o.provides: CMakeFiles/TelnetGame.dir/test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/TelnetGame.dir/build.make CMakeFiles/TelnetGame.dir/test.cpp.o.provides.build
-.PHONY : CMakeFiles/TelnetGame.dir/test.cpp.o.provides
+CMakeFiles/TelnetGame.dir/server.cpp.o.provides: CMakeFiles/TelnetGame.dir/server.cpp.o.requires
+	$(MAKE) -f CMakeFiles/TelnetGame.dir/build.make CMakeFiles/TelnetGame.dir/server.cpp.o.provides.build
+.PHONY : CMakeFiles/TelnetGame.dir/server.cpp.o.provides
 
-CMakeFiles/TelnetGame.dir/test.cpp.o.provides.build: CMakeFiles/TelnetGame.dir/test.cpp.o
+CMakeFiles/TelnetGame.dir/server.cpp.o.provides.build: CMakeFiles/TelnetGame.dir/server.cpp.o
 
 
 CMakeFiles/TelnetGame.dir/Room.cpp.o: CMakeFiles/TelnetGame.dir/flags.make
@@ -153,9 +153,33 @@ CMakeFiles/TelnetGame.dir/FileHandler.cpp.o.provides: CMakeFiles/TelnetGame.dir/
 CMakeFiles/TelnetGame.dir/FileHandler.cpp.o.provides.build: CMakeFiles/TelnetGame.dir/FileHandler.cpp.o
 
 
+CMakeFiles/TelnetGame.dir/test.cpp.o: CMakeFiles/TelnetGame.dir/flags.make
+CMakeFiles/TelnetGame.dir/test.cpp.o: ../test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TelnetGame.dir/test.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TelnetGame.dir/test.cpp.o -c "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/test.cpp"
+
+CMakeFiles/TelnetGame.dir/test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TelnetGame.dir/test.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/test.cpp" > CMakeFiles/TelnetGame.dir/test.cpp.i
+
+CMakeFiles/TelnetGame.dir/test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TelnetGame.dir/test.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/test.cpp" -o CMakeFiles/TelnetGame.dir/test.cpp.s
+
+CMakeFiles/TelnetGame.dir/test.cpp.o.requires:
+
+.PHONY : CMakeFiles/TelnetGame.dir/test.cpp.o.requires
+
+CMakeFiles/TelnetGame.dir/test.cpp.o.provides: CMakeFiles/TelnetGame.dir/test.cpp.o.requires
+	$(MAKE) -f CMakeFiles/TelnetGame.dir/build.make CMakeFiles/TelnetGame.dir/test.cpp.o.provides.build
+.PHONY : CMakeFiles/TelnetGame.dir/test.cpp.o.provides
+
+CMakeFiles/TelnetGame.dir/test.cpp.o.provides.build: CMakeFiles/TelnetGame.dir/test.cpp.o
+
+
 CMakeFiles/TelnetGame.dir/MessageUsers.cpp.o: CMakeFiles/TelnetGame.dir/flags.make
 CMakeFiles/TelnetGame.dir/MessageUsers.cpp.o: ../MessageUsers.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TelnetGame.dir/MessageUsers.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TelnetGame.dir/MessageUsers.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TelnetGame.dir/MessageUsers.cpp.o -c "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/MessageUsers.cpp"
 
 CMakeFiles/TelnetGame.dir/MessageUsers.cpp.i: cmake_force
@@ -179,23 +203,25 @@ CMakeFiles/TelnetGame.dir/MessageUsers.cpp.o.provides.build: CMakeFiles/TelnetGa
 
 # Object files for target TelnetGame
 TelnetGame_OBJECTS = \
-"CMakeFiles/TelnetGame.dir/test.cpp.o" \
+"CMakeFiles/TelnetGame.dir/server.cpp.o" \
 "CMakeFiles/TelnetGame.dir/Room.cpp.o" \
 "CMakeFiles/TelnetGame.dir/Response.cpp.o" \
 "CMakeFiles/TelnetGame.dir/FileHandler.cpp.o" \
+"CMakeFiles/TelnetGame.dir/test.cpp.o" \
 "CMakeFiles/TelnetGame.dir/MessageUsers.cpp.o"
 
 # External object files for target TelnetGame
 TelnetGame_EXTERNAL_OBJECTS =
 
-TelnetGame: CMakeFiles/TelnetGame.dir/test.cpp.o
+TelnetGame: CMakeFiles/TelnetGame.dir/server.cpp.o
 TelnetGame: CMakeFiles/TelnetGame.dir/Room.cpp.o
 TelnetGame: CMakeFiles/TelnetGame.dir/Response.cpp.o
 TelnetGame: CMakeFiles/TelnetGame.dir/FileHandler.cpp.o
+TelnetGame: CMakeFiles/TelnetGame.dir/test.cpp.o
 TelnetGame: CMakeFiles/TelnetGame.dir/MessageUsers.cpp.o
 TelnetGame: CMakeFiles/TelnetGame.dir/build.make
 TelnetGame: CMakeFiles/TelnetGame.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable TelnetGame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable TelnetGame"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TelnetGame.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -203,10 +229,11 @@ CMakeFiles/TelnetGame.dir/build: TelnetGame
 
 .PHONY : CMakeFiles/TelnetGame.dir/build
 
-CMakeFiles/TelnetGame.dir/requires: CMakeFiles/TelnetGame.dir/test.cpp.o.requires
+CMakeFiles/TelnetGame.dir/requires: CMakeFiles/TelnetGame.dir/server.cpp.o.requires
 CMakeFiles/TelnetGame.dir/requires: CMakeFiles/TelnetGame.dir/Room.cpp.o.requires
 CMakeFiles/TelnetGame.dir/requires: CMakeFiles/TelnetGame.dir/Response.cpp.o.requires
 CMakeFiles/TelnetGame.dir/requires: CMakeFiles/TelnetGame.dir/FileHandler.cpp.o.requires
+CMakeFiles/TelnetGame.dir/requires: CMakeFiles/TelnetGame.dir/test.cpp.o.requires
 CMakeFiles/TelnetGame.dir/requires: CMakeFiles/TelnetGame.dir/MessageUsers.cpp.o.requires
 
 .PHONY : CMakeFiles/TelnetGame.dir/requires

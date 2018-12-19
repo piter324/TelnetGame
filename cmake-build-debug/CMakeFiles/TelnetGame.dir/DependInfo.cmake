@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/MessageUsers.cpp" "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles/TelnetGame.dir/MessageUsers.cpp.o"
   "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/Response.cpp" "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles/TelnetGame.dir/Response.cpp.o"
   "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/Room.cpp" "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles/TelnetGame.dir/Room.cpp.o"
+  "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/server.cpp" "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles/TelnetGame.dir/server.cpp.o"
   "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/test.cpp" "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles/TelnetGame.dir/test.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

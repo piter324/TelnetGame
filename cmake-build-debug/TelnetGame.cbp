@@ -116,6 +116,9 @@
 		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/server">
 			<Option target="TelnetGame"/>
 		</Unit>
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/server.cpp">
+			<Option target="TelnetGame"/>
+		</Unit>
 		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/test.cpp">
 			<Option target="TelnetGame"/>
 		</Unit>

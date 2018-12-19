@@ -6,6 +6,34 @@
 
 #IncludeRegexTransform: 
 
+/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/AdminController.h
+string
+-
+fstream
+-
+istream
+-
+dirent.h
+-
+sstream
+-
+vector
+-
+AutorizationController.h
+/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/AutorizationController.h
+
+/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/AutorizationController.h
+string
+-
+iostream
+-
+fstream
+-
+cstdio
+-
+ios
+-
+
 /Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/FileHandler.cpp
 FileHandler.h
 /Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/FileHandler.h
@@ -71,6 +99,36 @@ utility
 -
 Response.h
 /Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/Response.h
+
+/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/RoomController.h
+FileHandler.h
+/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/FileHandler.h
+
+/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/server.cpp
+stdio.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+sys/signal.h
+-
+netinet/in.h
+-
+netdb.h
+-
+string
+-
+arpa/inet.h
+-
+unistd.h
+-
+AutorizationController.h
+/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/AutorizationController.h
+AdminController.h
+/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/AdminController.h
+RoomController.h
+/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/RoomController.h
 
 /Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/test.cpp
 FileHandler.h
