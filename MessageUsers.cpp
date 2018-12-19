@@ -163,7 +163,7 @@ std::string MessageUsers::telnetOpenMessages(std::string username) {
         allMessages += messages[i].sedner;
         allMessages += " ";
         allMessages += messages[i].textMessage;
-        allMessages += "\r\n";
+        allMessages += "\n";
     }
     //std::cout<<allMessages;
     return allMessages;
