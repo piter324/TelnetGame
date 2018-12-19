@@ -34,8 +34,11 @@ std::string Room::getNextRoomId(std::string answerLine) {
     int answerIdNumber = (int) answerId - 64;
 
     if(answerIdNumber <= getResponseListSize()){
-        std::string responseNextAction = responseList[answerIdNumber - 1]->getResponseNextAction();
+        std::cout << "DOSZLISMY TUTAJ1\n";
+        std::string responseNextAction = responseList[answerIdNumber - 1]->getResponseNextAction(); //wylatuje poza zakres?
+        std::cout << "UMIEM\n";
         if(responseNextAction.find('#') == std::string::npos) {
+             std::cout << "UPS\n";
             return responseNextAction;
         }
         else{
@@ -44,6 +47,7 @@ std::string Room::getNextRoomId(std::string answerLine) {
             std::stringstream stream(responseNextAction);
             std::vector<std::string> responseVector;
 
+            std::cout << "DOSZLISMY TUTAJ2\n";
             //jezeli odpowiedz ma format type#CORRECTANSWER#GO_TO_CORRECT#GO_TO_INCORRECT
             std::string tmp;
             while ( stream.good()) {
@@ -54,7 +58,9 @@ std::string Room::getNextRoomId(std::string answerLine) {
             std::string corrrectAnswer = responseVector[1];
             std::string correctLoc = responseVector[2];
             std::string incorrectLoc = responseVector[3];
-            if(answerToQuestion == corrrectAnswer){
+            std::cout << "DOSZLISMY TUTAJ3\n";
+            //if(answerToQuestion == corrrectAnswer){ 
+            if(answerToQuestion.compare(corrrectAnswer)== 0){
                 return correctLoc;
             }
             else
