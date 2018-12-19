@@ -33,7 +33,8 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
             // std::cout << "szukamy... " << userInfo.length() <<" " << username.length() << " " << passw.length() << std::endl;
             std::cout << "kandydat... " << userInfo << std::endl;
             std::size_t posUsername = userInfo.find(username);
-            std::size_t posPasswd = userInfo.find(passw);
+            posSep = userInfo.find(":");
+            std::size_t posPasswd = userInfo.find(passw, posSep);
             // std::cout << "szukamy2... " << posUsername <<" " << username.length() << " " << posPasswd << std::endl;
             if(posUsername != std::string::npos && posPasswd != std::string::npos) {
                 // std::cout << "szukamy3... " << posUsername <<" " << username.length() << " " << posPasswd << std::endl;
