@@ -28,6 +28,9 @@ std::string Room::writeResponses() {
 
 std::string Room::getNextRoomId(std::string answerLine) {
 
+    if(answerLine == "inbox" || answerLine == "tell inbox"){
+        //todo
+    }
     char answerId = answerLine[0];
     answerId = (char) toupper(answerId);
 

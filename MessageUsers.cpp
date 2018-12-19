@@ -9,13 +9,13 @@
 #include "MessageUsers.h"
 
 std::string MessageUsers::getFolderLocation() {
-    std::string messageFileLocation = "../messagesUsers/";
+    std::string messageFileLocation = "messagesUsers/";
     messageFileLocation += this->getUsername();
     return messageFileLocation;
 }
 
 std::string MessageUsers::getRecieverFolderLocation(std::string reciever) {
-    std::string messageFileLocation = "../messagesUsers/";
+    std::string messageFileLocation = "messagesUsers/";
     messageFileLocation += reciever;
     return messageFileLocation;
 }
@@ -27,7 +27,7 @@ bool MessageUsers::isRecieverInGame(std::string username) {
     for(int i = 0; i < username.length(); i++){
         tmpUsername += std::tolower(username[i]);
     }
-    std::string usersDataBaseLocation = "../users.db";
+    std::string usersDataBaseLocation = "users.db";
     std::ifstream usersDataBaseFile;
     usersDataBaseFile.open(usersDataBaseLocation);
 
