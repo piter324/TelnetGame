@@ -53,21 +53,21 @@ Message MessageUsers::newMessage(std::string telnetUsernameMessage) {
     std::stringstream stream(telnetUsernameMessage);
     std::vector<std::string> messageVector;
 
-    //telnet przekazuje string "TELNET LLOGGED_USERNAME RECIEVER MESSAGE" dzielimy go na 3 czesci i tworzymu obiekt message
+    //telnet przekazuje string "LLOGGED_USERNAME RECIEVER MESSAGE" dzielimy go na 3 czesci i tworzymu obiekt message
     while( stream.good()){
         std::string tmp;
         getline(stream, tmp, ' ');
         messageVector.push_back(tmp);
     }
-    setUsername(messageVector[1]);
+    setUsername(messageVector[0]);
 
     std::string messageText;
-    for(int i = 3; i < messageVector.size(); i++){
+    for(int i = 2; i < messageVector.size(); i++){
         messageText+=messageVector[i] + " ";
     }
 
-    Message tmpMessage(messageVector[1], messageText);
-    tmpMessage.reciever = messageVector[2];
+    Message tmpMessage(messageVector[0], messageText);
+    tmpMessage.reciever = messageVector[1];
     return tmpMessage;
 }
 
@@ -123,18 +123,18 @@ int MessageUsers::telnetDeleteMessage(std::string telnetUserAndNumber) {
     std::stringstream stream(telnetUserAndNumber);
     std::vector<std::string> messageVector;
 
-    //telnet przekazuje string "TELNET USERNAME NUMBER" dzielimy go na 3 czesci i tworzymu obiekt message
+    //telnet przekazuje string "USERNAME NUMBER" dzielimy go na 2 czesci i tworzymu obiekt message
     int i = 0;
-    while (i < 3) {
+    while (i < 2) {
         std::string tmp;
         getline(stream, tmp, ' ');
         messageVector.push_back(tmp);
         i++;
     }
 
-    username = messageVector[1];
+    username = messageVector[0];
     setUsername(username);
-    int messageNumber = std::stoi(messageVector[2]);
+    int messageNumber = std::stoi(messageVector[1]);
 
     //funkcja jest wywolywana z okna pojedynczej wiadomosci, wiec wiadomosc na pewno istnieje
 
@@ -182,18 +182,18 @@ std::string MessageUsers::telnetOpenSingleMessage(std::string telnetUserAndNumbe
     std::stringstream stream(telnetUserAndNumber);
     std::vector<std::string> messageVector;
 
-    //telnet przekazuje string "TELNET USERNAME NUMBER" dzielimy go na 3 czesci i tworzymu obiekt message
+    //telnet przekazuje string "USERNAME NUMBER" dzielimy go na 2 czesci i tworzymu obiekt message
     int i = 0;
-    while (i < 3) {
+    while (i < 2) {
         std::string tmp;
         getline(stream, tmp, ' ');
         messageVector.push_back(tmp);
         i++;
     }
 
-    username = messageVector[1];
+    username = messageVector[0];
     setUsername(username);
-    int messageNumber = std::stoi(messageVector[2]);
+    int messageNumber = std::stoi(messageVector[1);
 
     if(messageNumber >= messages.size() || messageNumber < 0){
         return "Nie odnaleziono wiadomosci o danym numerze.\r\n";
