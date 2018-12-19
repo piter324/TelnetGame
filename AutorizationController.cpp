@@ -26,6 +26,7 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
     std::cout << "passw ok \n";
     std::ifstream dbFile(pathToUserDatabase_);
     bool userFound = false;
+    //spr username i hasła
     if (dbFile) {
         std::cout<<"File open\n";
         std::string userInfo;
@@ -45,7 +46,10 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
             }
         }
         dbFile.close();
+        // ok login + hasło
         if(userFound) {
+            if(isLoggedIn(username))
+                return false;
             bool successInCreating = false;
             std::cout << "tworzymy plik gracza" << std::endl;
             std::ofstream userFile(pathToUserFolder_ + username);
