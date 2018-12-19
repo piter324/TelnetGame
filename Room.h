@@ -9,6 +9,7 @@
 #include <string>
 #include <fstream>
 #include <utility>
+#include <algorithm> //for std::transform
 
 #include "Response.h"
 

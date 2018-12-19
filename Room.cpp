@@ -31,14 +31,30 @@ std::string Room::getNextRoomId(std::string answerLine) {
     char answerId = answerLine[0];
     answerId = (char) toupper(answerId);
 
+
     int answerIdNumber = (int) answerId - 64;
 
-    if(answerIdNumber <= getResponseListSize()){
-        std::cout << "DOSZLISMY TUTAJ1\n";
-        std::string responseNextAction = responseList[answerIdNumber - 1]->getResponseNextAction(); //wylatuje poza zakres?
-        std::cout << "UMIEM\n";
+    std::cout << "answerLine = " << answerLine << std::endl;
+    std::cout << "answerId = " << answerId << std::endl;
+    std::cout << "answerIdNumber = " << answerIdNumber << std::endl;
+
+    std::cout << "list size " << getResponseListSize() << std::endl;
+    std::cout << "resp list " << responseList.size() << std::endl;
+
+    if(answerIdNumber <= getResponseListSize() && answerIdNumber >= 0){
+        //std::cout << "DOSZLISMY TUTAJ1\n";
+        //std::cout << "answerId - 1" << answerIdNumber - 1 << std::endl;
+        //for( auto iter = responseList.begin(); iter != responseList.end(); iter++)
+        //{
+        //    std::cout << *iter << std::endl;
+        //    std::cout << (*iter)->writeResponse() << std::endl;
+        //    std::cout << (*iter)->getResponseNextAction() << std::endl;
+        //}
+
+        std::string responseNextAction = responseList[answerIdNumber - 1]->getResponseNextAction();
+        //std::cout << "UMIEM\n";
         if(responseNextAction.find('#') == std::string::npos) {
-             std::cout << "UPS\n";
+            // std::cout << "UPS\n";
             return responseNextAction;
         }
         else{
@@ -58,9 +74,11 @@ std::string Room::getNextRoomId(std::string answerLine) {
             std::string corrrectAnswer = responseVector[1];
             std::string correctLoc = responseVector[2];
             std::string incorrectLoc = responseVector[3];
-            std::cout << "DOSZLISMY TUTAJ3\n";
-            //if(answerToQuestion == corrrectAnswer){ 
-            if(answerToQuestion.compare(corrrectAnswer)== 0){
+            //std::cout << "DOSZLISMY TUTAJ3\n";
+            std::transform(answerToQuestion.begin(), answerToQuestion.end(),answerToQuestion.begin(), ::toupper);
+            std::transform(corrrectAnswer.begin(), corrrectAnswer.end(),corrrectAnswer.begin(), ::toupper);
+            if(answerToQuestion == corrrectAnswer){ 
+            //if(answerToQuestion.compare(corrrectAnswer)== 0){
                 return correctLoc;
             }
             else

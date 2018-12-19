@@ -156,7 +156,7 @@ int main(int argc, char* argv[]){
                 while(1){
                     int bytesRead = read(clientSocketFd, buffer, BUFFER_SIZE);
                     if(bytesRead < 1){ //cliens has lost connection
-                        printf("Client %s disconnected\r\n", inet_ntoa(clientAddress.sin_addr));
+                        printf("Client %s on %s disconnected. Logging the fuck out\r\n", uname.c_str(), inet_ntoa(clientAddress.sin_addr));
                         if(uname != "") auth.logOut(uname);
                         graceful_TCP_shutdown();
                         return 0;
