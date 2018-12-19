@@ -167,4 +167,6 @@ std::string MessageUsers::telnetOpenMessages(std::string username) {
     }
     //std::cout<<allMessages;
     return allMessages;
+    //todo zwroc jakis string ze nie ma wiadomosci albo cos...
+    //todo dodawanie i usuwanie plików przy rejestracji!!!
 }

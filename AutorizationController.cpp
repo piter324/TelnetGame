@@ -53,7 +53,7 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
             userFile.close();
             return successInCreating;
         }
-
+        //todo sprawdz czy user juz zalogowany
     }
     dbFile.close();
     std::cout << "blad w otwieraniu pliku" << std::endl;
