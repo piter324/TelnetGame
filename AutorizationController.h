@@ -18,9 +18,10 @@
 class AutorizationController {
     public:
         AutorizationController(std::string pathToUserDatabase = std::string("users.db"),
-         std::string pathToUserFolder = std::string("loggedUsers/") ) {
+         std::string pathToUserFolder = std::string("loggedUsers/"), std::string pathToMessageFolder = std::string("messageUsers/") ) {
             pathToUserDatabase_ = pathToUserDatabase;
             pathToUserFolder_ = pathToUserFolder;
+            pathToMessageFolder_ = pathToMessageFolder;
         }
 
         bool isLoggedIn(std::string username);
@@ -30,7 +31,7 @@ class AutorizationController {
     private:
         std::string pathToUserDatabase_;
         std::string pathToUserFolder_;
-
+        std::string pathToMessageFolder_;
 };
 
 

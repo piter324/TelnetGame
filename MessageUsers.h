@@ -55,7 +55,7 @@ private:
 
     std::string getRecieverFolderLocation(std::string reciever);
 
-    Message newMessage(std::string telnetUsernameMessage);
+    Message newMessage(std::string username, std::string reciever, std::string textMessage);
 
     int getAllMessagesFromFile();
 
@@ -63,15 +63,15 @@ private:
 
 public:
 
-    MessageUsers(){}
+    MessageUsers() = default;
 
-    int telnetSendMessage(std::string telnetUsernameMessage);
+    int telnetSendMessage(std::string username, std::string reciever, std::string textMessage);
 
-    int telnetDeleteMessage(std::string telnetUserAndNumber);
+    int telnetDeleteMessage(std::string username, int number);
 
     std::string telnetOpenMessages(std::string username);
 
-    std::string telnetOpenSingleMessage(std::string telnetUserAndNumber);
+    std::string telnetOpenSingleMessage(std::string username, int number);
 
 };
 
