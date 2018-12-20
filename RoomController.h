@@ -15,6 +15,7 @@ public:
 
     std::string run();
     std::string request(std::string command);
+    std::string writeCurrentRoomDescription();
 };
 
 

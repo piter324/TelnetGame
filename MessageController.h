@@ -7,7 +7,7 @@
 #include <sstream>
 #include <vector>
 
-class MessageController 
+class MessageController
 {
     std::string showAllMessages(std::vector<std::string> commandVector);
     std::string deleteMessage(std::vector<std::string> commandVector);
@@ -21,9 +21,7 @@ public:
 #endif //MESSAGE_CONTROLLER_H
 
 // TODO
-// wywolywanie metod z MessageUsers
 // obsluga w serwerze:
 // - przy sprawdzaniu czy exit it sprawdzanie czy send jest slowem kluczowym
 // - nowy stan przebywania w skrzynce pocztowej, do skrzynki wchodzimy slowem kluczowym mailbox
 // - powrot ze stanu mailbox za pomoca exit powinno ponownie wyswietlic opis pomieszczenia w ktorym sie znajdujemy??
-// - dodac do makefile Messageontroller i MessageUsers

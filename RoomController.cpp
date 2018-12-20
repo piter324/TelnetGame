@@ -15,8 +15,8 @@ std::string RoomController::request(std::string command)
     std::string result;
     std::string roomId;
 
-    if(currentRoom->getRoomId().compare("konkurspyt1.loc") == 0 || 
-        currentRoom->getRoomId().compare("konkurspyt2.loc") == 0 || 
+    if(currentRoom->getRoomId().compare("konkurspyt1.loc") == 0 ||
+        currentRoom->getRoomId().compare("konkurspyt2.loc") == 0 ||
         currentRoom->getRoomId().compare("konkurspyt3.loc") == 0 ||
         currentRoom->getRoomId().compare("konkurspyt4.loc") == 0 ) {
             std::cout << "Musimy parsowac odpowiedzi!";
@@ -37,4 +37,9 @@ std::string RoomController::request(std::string command)
             result = roomId;
         }
     return result;
+}
+
+std::string RoomController::writeCurrentRoomDescription()
+{
+    return currentRoom->writeRoomDescription();
 }

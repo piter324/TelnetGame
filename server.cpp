@@ -7,10 +7,13 @@
 #include <string>
 #include <arpa/inet.h> //inet_ntoa
 #include <unistd.h> //fork
+#include <sstream>
+#include <string>
 
 #include "AutorizationController.h"
 #include "AdminController.h"
 #include "RoomController.h"
+#include "MessageController.h"
 
 #define SERVER_PORT 3130
 #define QUEUE_SIZE 16
@@ -130,12 +133,15 @@ int main(int argc, char* argv[]){
             #define REGISTER_UNAME 6
             #define REGISTER_PASS 7
             #define ADMIN_SESSION 8
+            #define MAILBOX_STATE 9
 
             std::string uname, pass;
+            std::string tmp;
             int state = WELCOME; // current state of a server
             AutorizationController auth = AutorizationController();
             AdminController admin = AdminController();
             RoomController roomc = RoomController();
+            MessageController messageController;
 
             while(1) { // client event loop
 
@@ -191,6 +197,7 @@ int main(int argc, char* argv[]){
                         break;
                     }
                 }
+                if(message.length()==0) continue;
                 message_index = 0;
                 message = message.substr(0, message.size()-2);
                 // printf("%s\n", message);
@@ -205,6 +212,7 @@ int main(int argc, char* argv[]){
                     graceful_TCP_shutdown();
                     return 0;
                 }
+
                 switch(state) { // send message to user
                     case WELCOME:
                         if(message == "login") {
@@ -280,7 +288,27 @@ int main(int argc, char* argv[]){
                         break;
 
                     case ROOM_NAV:
-                        send_message(roomc.request(message));
+                        std::getline(std::stringstream(message), tmp, ' ');
+                        if(tmp=="send")
+                            send_message(messageController.send(uname + " " + message));
+                        else if(tmp=="mailbox")
+                        {
+                            state = MAILBOX_STATE;
+                            send_message("Welcome in MAILBOX!\r\n");
+                            send_message(messageController.help());
+                        }
+                        else
+                            send_message(roomc.request(message));
+                        break;
+
+                    case MAILBOX_STATE:
+                        if(message == "back")
+                        {
+                             state = ROOM_NAV;
+                             send_message(roomc.writeCurrentRoomDescription());
+                        }
+                        else
+                            send_message(messageController.request(uname + " " + message));
                         break;
                 }
 
