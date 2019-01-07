@@ -27,6 +27,8 @@ int socketFd;
 bool child = false;
 
 void interrupt_handler(int signalNum){
+    AdminController adminController;
+    adminController.request("restart");
     printf("SIGNAL: %d, Server on desc: %d is closing...\n", signalNum, socketFd);
     graceful_TCP_shutdown();
     exit(0);
