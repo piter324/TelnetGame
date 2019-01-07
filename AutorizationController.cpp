@@ -89,7 +89,7 @@ bool AutorizationController::registerUser(std::string username, std::string pass
     bool userFound = false;
     bool anyUser = false;
     std::cout << "username = " << username << " ;password " << passw << std::endl;
-    if (dbFile) {
+    if (dbFile ) {
         std::string userInfo;
         while (!userFound && getline (dbFile,userInfo) ) {
            // std::cout << "szukamy... " << userInfo.length() <<" " << username.length() << " " << passw.length() << std::endl;
@@ -122,8 +122,10 @@ bool AutorizationController::registerUser(std::string username, std::string pass
 
     //MUTEX?
     std::ofstream dbFile_app;
+    std::ofstream msgFile(pathToMessageFolder_ + username);
     dbFile_app.open(pathToUserDatabase_, std::ios_base::app);
-    if (dbFile_app) {
+    //msgFile_app.open(pathToMessageFolder_ + username, std::ios::out);
+    if (dbFile_app && msgFile) {
         dbFile_app << content;
         dbFile_app.clear();
         dbFile_app.seekp(0,  dbFile_app.beg);
@@ -131,6 +133,7 @@ bool AutorizationController::registerUser(std::string username, std::string pass
     }
 
     dbFile_app.close();
+    msgFile.close();
 
     return false;
 }

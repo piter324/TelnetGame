@@ -1,12 +1,12 @@
 (
-echo "login";
+echo login;
 sleep 1;
-echo "1";
+echo 1;
 sleep 1;
-echo "1";
+echo 1;
 sleep 1;
-echo "a";
+echo a;
 sleep 1;
-echo "a";
+echo a;
 sleep 2;
 ) | telnet 127.0.0.1 3130
