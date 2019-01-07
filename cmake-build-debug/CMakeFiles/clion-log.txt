@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame"
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame"
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug
+-- Build files have been written to: /Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/cmake-build-debug

@@ -54,10 +54,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame"
+CMAKE_SOURCE_DIR = "/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug"
+CMAKE_BINARY_DIR = "/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/cmake-build-debug"
 
 #=============================================================================
 # Target rules for target CMakeFiles/TelnetGame.dir
@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiał
 CMakeFiles/TelnetGame.dir/all:
 	$(MAKE) -f CMakeFiles/TelnetGame.dir/build.make CMakeFiles/TelnetGame.dir/depend
 	$(MAKE) -f CMakeFiles/TelnetGame.dir/build.make CMakeFiles/TelnetGame.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" --progress-num=1,2,3,4,5,6,7 "Built target TelnetGame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" --progress-num=1,2,3,4,5,6,7 "Built target TelnetGame"
 .PHONY : CMakeFiles/TelnetGame.dir/all
 
 # Include target in all.
@@ -76,9 +76,9 @@ all: CMakeFiles/TelnetGame.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/TelnetGame.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" 7
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" 7
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TelnetGame.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/cmake-build-debug/CMakeFiles" 0
 .PHONY : CMakeFiles/TelnetGame.dir/rule
 
 # Convenience name for target.

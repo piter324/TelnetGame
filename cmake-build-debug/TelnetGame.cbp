@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug"/>
+				<Option working_dir="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug"/>
+				<Option working_dir="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug"/>
+				<Option working_dir="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="TelnetGame">
-				<Option output="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/TelnetGame" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug"/>
+				<Option output="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/cmake-build-debug/TelnetGame" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -52,15 +52,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 TelnetGame"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 TelnetGame"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="TelnetGame/fast">
-				<Option output="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug/TelnetGame" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/cmake-build-debug"/>
+				<Option output="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/cmake-build-debug/TelnetGame" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -73,59 +73,59 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 TelnetGame/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka\ WEITI\ Materiały\ /TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 TelnetGame/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN\ -\ Projekt/TelnetGame/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/FileHandler.cpp">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/FileHandler.cpp">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/FileHandler.h">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/FileHandler.h">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/MessageUsers.cpp">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/MessageUsers.cpp">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/MessageUsers.h">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/MessageUsers.h">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/README.md">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/README.md">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/Response.cpp">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/Response.cpp">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/Response.h">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/Response.h">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/Room.cpp">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/Room.cpp">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/Room.h">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/Room.h">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/active_users.db">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/active_users.db">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/makefile">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/makefile">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/server">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/server">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/server.cpp">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/server.cpp">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/test.cpp">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/test.cpp">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/users.db">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/users.db">
 			<Option target="TelnetGame"/>
 		</Unit>
-		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka WEITI Materiały /TIN - Projekt/TelnetGame/CMakeLists.txt">
+		<Unit filename="/Users/bartoszcybulski/Documents/Informatyka_WEITI/TIN - Projekt/TelnetGame/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
