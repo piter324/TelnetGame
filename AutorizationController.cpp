@@ -75,7 +75,6 @@ bool AutorizationController::logOut(std::string username) {
 }
 
 //untested!!!
-//TODO tworzenie pliku wiadomosci przy tworzeniu nowego usera
 bool AutorizationController::registerUser(std::string username, std::string passw) {
     std::size_t posSep = username.find(":");
     if (posSep != std::string::npos)

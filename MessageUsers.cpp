@@ -36,8 +36,12 @@ bool MessageUsers::isRecieverInGame(std::string username) {
     }
 
     std::string line;
-    while( std::getline(usersDataBaseFile, line, ':') ){
+    while( std::getline(usersDataBaseFile, line) ){
+        tmpLine = "";
         for(int i = 0; i < line.length(); i++){
+            if(line[i] == ':'){
+                break;
+            }
             tmpLine += std::tolower(line[i]);
         }
         if(tmpUsername == tmpLine){
@@ -45,7 +49,7 @@ bool MessageUsers::isRecieverInGame(std::string username) {
             return true;
         }
     }
-
+    usersDataBaseFile.close();
     return false;
 }
 
@@ -108,7 +112,7 @@ std::string MessageUsers::telnetOpenSingleMessage(std::string username, int numb
 
 
     setUsername(std::move(username));
-    int messageNumber = number;
+    int messageNumber = number - 1;
 
     if(messageNumber >= messages.size() || messageNumber < 0){
         return "Nie odnaleziono wiadomosci o danym numerze.\r\n";
@@ -159,7 +163,7 @@ std::string MessageUsers::telnetOpenMessages(std::string username) {
     std::string allMessages;
 
     for(int i = 0; i < messages.size(); i++){
-        allMessages += "[" + std::to_string(i) + "]. ";
+        allMessages += "[" + std::to_string(i + 1) + "]. ";
         allMessages += messages[i].sedner;
         allMessages += " ";
         allMessages += messages[i].textMessage;
@@ -168,5 +172,4 @@ std::string MessageUsers::telnetOpenMessages(std::string username) {
     //std::cout<<allMessages;
     return allMessages;
     //todo zwroc jakis string ze nie ma wiadomosci albo cos...
-    //todo dodawanie i usuwanie plików przy rejestracji!!!
 }
