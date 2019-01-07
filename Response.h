@@ -45,6 +45,5 @@ public:
 
 
 };
-//TODO dodaj odpowiedzi na pytania
 
 #endif //TELNETGAME_RESPONSE_H

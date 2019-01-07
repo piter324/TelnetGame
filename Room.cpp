@@ -89,7 +89,7 @@ std::string Room::getNextRoomId(std::string answerLine) {
         }
     }
     else
-        return "Nieprawidlowa odpowiedz. Podaj odpowiedz jeszcze raz";
+        return "";
 
 
 }

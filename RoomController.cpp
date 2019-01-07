@@ -15,6 +15,7 @@ std::string RoomController::request(std::string command)
     std::string result;
     std::string roomId;
 
+
     if(currentRoom->getRoomId().compare("konkurspyt1.loc") == 0 ||
         currentRoom->getRoomId().compare("konkurspyt2.loc") == 0 ||
         currentRoom->getRoomId().compare("konkurspyt3.loc") == 0 ||
@@ -24,17 +25,22 @@ std::string RoomController::request(std::string command)
 
     roomId = currentRoom->getNextRoomId(command);
 
-    if(roomId != "Nieprawidlowy wybor. Podaj odpowiedz jeszcze raz")
+    if(roomId.length() > 0)
         {
             std::cout << "room id = " << roomId << "\n";
             currentRoom = FileHandler::getInstance().getNextRoom(roomId);
+
+            if(currentRoom == nullptr){
+                std::cout<<"ODWOLANIE DO NULLA; " + roomId +"\n";
+            }
+
             std::cout << "currentRoom = " << currentRoom << "\n";
             result = currentRoom->writeRoomDescription();
             std::cout << "result = " << result << "\n";
         }
         else
         {
-            result = roomId;
+            result = "Nieprawidlowa odpowiedz.";
         }
     return result;
 }
