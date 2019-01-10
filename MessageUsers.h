@@ -46,6 +46,7 @@ class MessageUsers {
 private:
     std::string username;
     std::vector<Message> messages;
+    int numberOfMessages = 0;
 
     void setUsername(std::string username) { this->username = username; }
 
@@ -72,6 +73,8 @@ public:
     std::string telnetOpenMessages(std::string username);
 
     std::string telnetOpenSingleMessage(std::string username, int number);
+
+    int telnetNumberOfMessages(std::string username);
 
 };
 

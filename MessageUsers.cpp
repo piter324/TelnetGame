@@ -80,6 +80,7 @@ int MessageUsers::getAllMessagesFromFile() {
         line.size();
         Message tmpMessage(line);
         messages.push_back(tmpMessage);
+        numberOfMessages++;
     }
 
     messageFile.close();
@@ -112,6 +113,7 @@ std::string MessageUsers::telnetOpenSingleMessage(std::string username, int numb
 
 
     setUsername(std::move(username));
+    getAllMessagesFromFile();
     int messageNumber = number - 1;
 
     if(messageNumber >= messages.size() || messageNumber < 0){
@@ -130,7 +132,8 @@ int MessageUsers::telnetDeleteMessage(std::string username, int number) {
     // i sa przekazywane jako parametr funkcji deleteMessage
 
     setUsername(move(username));
-    int messageNumber = number;
+    getAllMessagesFromFile();
+    int messageNumber = number - 1;
 
     //funkcja jest wywolywana z okna pojedynczej wiadomosci, wiec wiadomosc na pewno istnieje
 
@@ -172,4 +175,10 @@ std::string MessageUsers::telnetOpenMessages(std::string username) {
     //std::cout<<allMessages;
     return allMessages;
     //todo zwroc jakis string ze nie ma wiadomosci albo cos...
+}
+
+int MessageUsers::telnetNumberOfMessages(std::string username) {
+    setUsername(username);
+    getAllMessagesFromFile();
+    return numberOfMessages;
 }

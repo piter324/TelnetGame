@@ -3,6 +3,9 @@
 //
 
 #include "RoomController.h"
+#include "MessageController.h"
+
+#include <string>
 
 std::string RoomController::run()
 {
@@ -48,4 +51,10 @@ std::string RoomController::request(std::string command)
 std::string RoomController::writeCurrentRoomDescription()
 {
     return currentRoom->writeRoomDescription();
+}
+
+std::string RoomController::writeNumberOfMessages(std::string username){
+    MessageController messageController;
+    std::string retString = ("Number of messages in inbox: " + std::to_string(messageController.getNumberOfMessagess(username) ) + ".\n");
+    return  retString;
 }

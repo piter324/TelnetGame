@@ -16,6 +16,7 @@ public:
     std::string request(std::string command);
     std::string send(std::string command);
     std::string help();
+    int getNumberOfMessagess(std::string username);
 };
 
 #endif //MESSAGE_CONTROLLER_H

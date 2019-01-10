@@ -241,6 +241,7 @@ int main(int argc, char* argv[]){
                         pass = message;
                         if(auth.logIn(uname, pass)) {
                             send_message("Zalogowanie przebieglo pomyslnie\r\n", false);
+                            send_message(roomc.writeNumberOfMessages(uname));
                             send_message(roomc.run());
                             state = ROOM_NAV;
                         } else {
@@ -297,16 +298,20 @@ int main(int argc, char* argv[]){
                         {
                             state = MAILBOX_STATE;
                             send_message("Welcome in MAILBOX!\r\n");
+                            send_message(roomc.writeNumberOfMessages(uname));
                             send_message(messageController.help());
                         }
-                        else
+                        else {
+                            send_message(roomc.writeNumberOfMessages(uname));
                             send_message(roomc.request(message));
+                        }
                         break;
 
                     case MAILBOX_STATE:
                         if(message == "back")
                         {
                              state = ROOM_NAV;
+                             send_message(roomc.writeNumberOfMessages(uname));
                              send_message(roomc.writeCurrentRoomDescription());
                         }
                         else

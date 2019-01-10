@@ -136,3 +136,8 @@ std::string MessageController::request(std::string command)
 
     return result;
 }
+
+int MessageController::getNumberOfMessagess(std::string username){
+    MessageUsers messageUsers;
+    return messageUsers.telnetNumberOfMessages(username);
+}
