@@ -155,7 +155,7 @@ int main(int argc, char* argv[]){
 
                 switch(state) { // send message to user
                     case WELCOME:
-                        send_message("\r\n\r\nWitamy w 'Pogoni za A+'!\r\nNajpierw kilka zasad:\r\n 1. Nie testujemy wejscia za pomoca 'dupa'. \r\n 2. W nawiasach kwardratowych napisalismy komende (lub litere), ktora nalezy wpisac, aby wywolac przypisana do niej akcje\r\n Co chcesz zrobic: \r\n[login] Zaloguj sie\r\n[register] Zarejestruj sie\r\n[admin] Rozpocznij sesje admina\r\n[exit] Wyjdz\r\n");
+                        send_message("\r\n\r\nWitamy w 'Pogoni za A+'!\r\nNajpierw kilka zasad:\r\n 1. Komendy dostepne globalnie to: exit - aby wyjsc z serwera, \r\n a po zalogowaniu takze:\r\n send <nazwa odbiorcy> <wiadomosc> - wysylanie wiadomosci, \r\n mailbox - wyswietlenie swojej skrzynki wiadomosci \r\n 2. W nawiasach kwardratowych napisalismy komende (lub litere), ktora nalezy wpisac, aby wywolac przypisana do niej akcje\r\n 3. W niektorych lokalizacjach format odpowiedzi bedzie nieco inny, ale poinformujemy o tym po wejsciu do tej lokalizacji\r\n Co chcesz zrobic: \r\n[login] Zaloguj sie\r\n[register] Zarejestruj sie\r\n[admin] Rozpocznij sesje admina\r\n[exit] Wyjdz\r\n");
                         break;
                     case BACK_TO_WELCOME:
                         send_message("Co chcesz zrobic?\r\n[back] Wroc\r\n[exit] Wyjdz\r\n");
@@ -208,11 +208,23 @@ int main(int argc, char* argv[]){
                     send_message("What color is the mailbox inside?\r\n> Infrared.\r\n");
                 }
 
+                if(message == "help"){
+                    send_message("Najpierw kilka zasad:\r\n 1. Komendy dostepne globalnie to: exit - aby wyjsc z serwera, \r\n send <nazwa odbiorcy> <wiadomosc> - wysylanie wiadomosci, \r\n mailbox - wyswietlenie swojej skrzynki wiadomosci \r\n 2. W nawiasach kwardratowych napisalismy komende (lub litere), ktora nalezy wpisac, aby wywolac przypisana do niej akcje\r\n 3. W niektorych lokalizacjach format odpowiedzi bedzie nieco inny, ale poinformujemy o tym po wejsciu do tej lokalizacji\r\n");
+                }
+
                 if(message == "exit") {
                     printf("Connection from %s is on port %d closing\r\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
                     if(uname != "") auth.logOut(uname);
                     graceful_TCP_shutdown();
                     return 0;
+                }
+
+                if(state == ROOM_NAV || state == MAILBOX_STATE) {
+                    if(!auth.isLoggedIn(uname)){
+                        send_message("------- Zostales wylogowany z serwera -------\r\n");
+                        state = WELCOME;
+                        continue;
+                    }
                 }
 
                 switch(state) { // send message to user
@@ -245,7 +257,7 @@ int main(int argc, char* argv[]){
                             send_message(roomc.run());
                             state = ROOM_NAV;
                         } else {
-                            send_message("Bledna nazwa uzytkownika, haslo lub uzytkownik nie znaleziony.\r\n", false);
+                            send_message("Blad logowania.\r\n", false);
                             state = BACK_TO_WELCOME;
                             uname = "";
                             pass = "";
@@ -297,7 +309,7 @@ int main(int argc, char* argv[]){
                         else if(tmp=="mailbox")
                         {
                             state = MAILBOX_STATE;
-                            send_message("Welcome in MAILBOX!\r\n");
+                            send_message("----------------------\r\nWelcome to MAILBOX!\r\n");
                             send_message(roomc.writeNumberOfMessages(uname));
                             send_message(messageController.help());
                         }
