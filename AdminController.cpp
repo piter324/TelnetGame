@@ -31,7 +31,7 @@ std::string AdminController::showActivePlayers()
             std::string nick;
             std::stringstream stream(fileName);
             std::getline(stream, nick, '.');
-            result+=nick + "\r\n";
+            result+=nick + "\n";
             ++activeUsersAmount;
             ent = readdir(dir);
         }
@@ -46,6 +46,7 @@ std::string AdminController::showActivePlayers()
 std::string AdminController::showAllUsers()
 {
     std::fstream file;
+    sem_wait(semUsers);
     file.open(usersFile, std::ios::in);
     std::string line;
     std::string nick;
@@ -59,11 +60,13 @@ std::string AdminController::showAllUsers()
             std::getline(file, line);
             std::stringstream stream(line);
             std::getline(stream, nick, ':');
-            result += nick + "\r\n";
+            result += nick + "\n";
             ++usersAmount;
         }
         if(!usersAmount)
             result = "No players found.";
+        file.close();
+        sem_post(semUsers);
         return result;
     }
     else std::cout<<"Cannot open file \""<<usersFile<<"\"."<<std::endl;
@@ -78,9 +81,11 @@ std::string AdminController::kickUser(std::string user)
     return ("User \"" + user + "\" is not active or does not exist.");
 }
 
+/*
 std::string AdminController::deleteUser(std::string user)
 {
     std::fstream file;
+    sem_wait(semUsers);
     file.open(usersFile, std::ios::in);
     std::string line;
     std::string nick;
@@ -94,14 +99,19 @@ std::string AdminController::deleteUser(std::string user)
             if(nick==user)
             {
                 // delete user
+                file.close();
+                sem_post(semUsers);
                 return  ("User \""+ user + "\"deleted.");
             }
         }
+        file.close();
+        sem_post(semUsers);
         return ("User \""+ user + "\"does not exist.");
     }
-    else return("Cannot open file \"" + usersFile + "\".");
-
+    sem_post(semUsers);
+    return("Cannot open file \"" + usersFile + "\".");
 }
+*/
 
 std::string AdminController::request(std::string command)
 {
@@ -126,13 +136,6 @@ std::string AdminController::request(std::string command)
         else
             result = kickUser(commandVector[1]);
     }
-    else if(commandVector[0]=="delete")
-    {
-        if(commandVector.size() < 2)
-            result = "No argument found. Command should have form: delete [username]";
-        else
-            result = deleteUser(commandVector[1]);
-    }
     else if(commandVector[0]=="restart")
     {
         result = serverReset();
@@ -148,7 +151,7 @@ std::string AdminController::request(std::string command)
         else result = "Argument " + commandVector[1] + "is not valid.";
     }
     else if(commandVector[0]=="help")
-        result = "Commands:\r\n kick [username] \r\n delete [username] \r\n restart \r\n show all \r\n show active";
+        result = "Commands:\r\n kick [username] \r\n restart \r\n show all \r\n show active";
     else result = "Unknown command : " + command;
 
     return result;

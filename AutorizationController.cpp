@@ -24,6 +24,7 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
         if (posSep != std::string::npos)
         return false; //innapropriate password
     std::cout << "passw ok \n";
+    sem_wait(semUsers);
     std::ifstream dbFile(pathToUserDatabase_);
     bool userFound = false;
     //spr username i hasła
@@ -39,7 +40,7 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
             // std::cout << "szukamy2... " << posUsername <<" " << username.length() << " " << posPasswd << std::endl;
             if(posUsername != std::string::npos && posPasswd != std::string::npos) {
                 // std::cout << "szukamy3... " << posUsername <<" " << username.length() << " " << posPasswd << std::endl;
-                std::string password = userInfo.substr(posPasswd);              
+                std::string password = userInfo.substr(posPasswd);
                 if(posUsername == 0 && posPasswd == username.length() + 1 && posPasswd-1 == username.length())
                     if(password.compare(passw) == 0 || (int(password[password.length() - 1]) == 13 && password.length() == passw.length() + 1) )
                     userFound = true;
@@ -49,18 +50,23 @@ bool AutorizationController::logIn(std::string username, std::string passw) {
         // ok login + hasło
         if(userFound) {
             if(isLoggedIn(username))
+            {
+                sem_post(semUsers);
                 return false;
+            }
             bool successInCreating = false;
             std::cout << "tworzymy plik gracza" << std::endl;
             std::ofstream userFile(pathToUserFolder_ + username);
             if (userFile) successInCreating = true;
             userFile.close();
+            sem_post(semUsers);
             return successInCreating;
         }
         //todo sprawdz czy user juz zalogowany
     }
     dbFile.close();
     std::cout << "blad w otwieraniu pliku" << std::endl;
+    sem_post(semUsers);
     return false;
 }
 bool AutorizationController::logOut(std::string username) {
@@ -84,6 +90,7 @@ bool AutorizationController::registerUser(std::string username, std::string pass
         return false; //innapropriate password
     // check if this username exists
     std::ifstream dbFile;
+    sem_wait(semUsers);
     dbFile.open(pathToUserDatabase_);
     bool userFound = false;
     bool anyUser = false;
@@ -104,6 +111,7 @@ bool AutorizationController::registerUser(std::string username, std::string pass
             }
     }
     dbFile.close();
+    sem_post(semUsers);
     if (userFound) {
         std::cout << "Taki użytkownik już istnieje" << std::endl;
         return false;
@@ -120,6 +128,7 @@ bool AutorizationController::registerUser(std::string username, std::string pass
 
 
     //MUTEX?
+    sem_wait(semUsers);
     std::ofstream dbFile_app;
     std::ofstream msgFile(pathToMessageFolder_ + username);
     dbFile_app.open(pathToUserDatabase_, std::ios_base::app);
@@ -133,6 +142,7 @@ bool AutorizationController::registerUser(std::string username, std::string pass
 
     dbFile_app.close();
     msgFile.close();
+    sem_post(semUsers);
 
     return false;
 }

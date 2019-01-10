@@ -1,7 +1,7 @@
 /*
  * @author Karolina Bilewicz
  * @version 0.1
- * 
+ *
 */
 
 
@@ -13,6 +13,9 @@
 #include <fstream>
 #include <cstdio>
 #include <ios>
+#include <semaphore.h>
+#include <fcntl.h>
+#include <sys/stat.h>
 
 
 class AutorizationController {
@@ -22,6 +25,7 @@ class AutorizationController {
             pathToUserDatabase_ = pathToUserDatabase;
             pathToUserFolder_ = pathToUserFolder;
             pathToMessageFolder_ = pathToMessageFolder;
+            semUsers = sem_open("semUsers",  O_CREAT, 0644, 1);
         }
 
         bool isLoggedIn(std::string username);
@@ -32,6 +36,7 @@ class AutorizationController {
         std::string pathToUserDatabase_;
         std::string pathToUserFolder_;
         std::string pathToMessageFolder_;
+        sem_t* semUsers;
 };
 
 

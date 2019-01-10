@@ -10,7 +10,7 @@ import telnetlib
 import random
 
 HOST = "localhost"
-tn = telnetlib.Telnet("192.168.0.172", port = 3130)
+tn = telnetlib.Telnet("127.0.0.1", port = 3130)
 user = "1"
 password = "1"
 linux = False

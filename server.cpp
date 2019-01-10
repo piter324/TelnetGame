@@ -9,6 +9,10 @@
 #include <unistd.h> //fork
 #include <sstream>
 #include <string>
+#include <semaphore.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+
 
 #include "AutorizationController.h"
 #include "AdminController.h"
@@ -25,10 +29,13 @@ void send_message(std::string message, bool prompt);
 
 int socketFd;
 bool child = false;
+sem_t* semUsers;
 
 void interrupt_handler(int signalNum){
     AdminController adminController;
     adminController.request("restart");
+    sem_unlink ("semUsers");
+    sem_close(semUsers);
     printf("SIGNAL: %d, Server on desc: %d is closing...\n", signalNum, socketFd);
     graceful_TCP_shutdown();
     exit(0);
@@ -77,6 +84,13 @@ void send_message(std::string message, bool prompt = true){
 }
 
 int main(int argc, char* argv[]){
+    semUsers = sem_open("semUsers",  O_CREAT | O_EXCL, 0644, 1);
+    if(semUsers==nullptr)
+    {
+        printf("Semaphore \"semUsers\"already exists.");
+        exit(1);
+    }
+    system("mkdir loggedUsers");
     signal(SIGINT, &interrupt_handler);
     printf("\n\n\nSecrets of Elka\n--------------------\n");
 
@@ -164,7 +178,7 @@ int main(int argc, char* argv[]){
                 while(1){
                     int bytesRead = read(clientSocketFd, buffer, BUFFER_SIZE);
                     if(bytesRead < 1){ //cliens has lost connection
-                        printf("Client %s on %s disconnected. Logging the fuck out\r\n", uname.c_str(), inet_ntoa(clientAddress.sin_addr));
+                        printf("Client %s on %s disconnected. Logging out\r\n", uname.c_str(), inet_ntoa(clientAddress.sin_addr));
                         if(uname != "") auth.logOut(uname);
                         graceful_TCP_shutdown();
                         return 0;

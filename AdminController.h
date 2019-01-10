@@ -11,6 +11,9 @@
 #include <dirent.h>
 #include <sstream>
 #include <vector>
+#include <semaphore.h>
+#include <fcntl.h>
+#include <sys/stat.h>
 #include "AutorizationController.h"
 
 class AdminController
@@ -18,6 +21,7 @@ class AdminController
     const std::string usersFile="users.db";
     const std::string activeUsersPathForRestart="loggedUsers/*";
     const std::string activeUsersPathToShowList="loggedUsers/";
+    sem_t* semUsers;
     std::string serverReset();
     std::string showActivePlayers();
     std::string showAllUsers();
@@ -25,6 +29,10 @@ class AdminController
     std::string deleteUser(std::string user);
 public:
     std::string request(std::string command);
+    AdminController()
+    {
+        semUsers = sem_open("semUsers",  O_CREAT, 0644, 1);
+    }
 };
 
 

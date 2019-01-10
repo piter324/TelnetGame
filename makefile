@@ -1,4 +1,4 @@
-CC=g++ -std=c++11
+CC=g++ -std=c++11 -pthread
 
 all: AutorizationController.o AdminController.o Response.o Room.o FileHandler.o RoomController.o MessageUsers.o MessageController.o server.o
 	$(CC) AutorizationController.o AdminController.o Response.o Room.o FileHandler.o RoomController.o MessageUsers.o MessageController.o server.o -o server
